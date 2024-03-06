@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import SwitchTheme from "@/components/SwitchTheme";
 import Image from "next/image";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
         <p className="text-lg text-center mt-4">
           Get started by editing{" "}
           <code className="bg-gray-200 p-2 rounded-md">pages/index.js</code>
-          <Button />
+          <SwitchTheme />
         </p>
       </div>
     </main>
