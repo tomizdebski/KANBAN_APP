@@ -22,10 +22,10 @@ const config: Config = {
         blue: "#49C4E7",
         green: "#67E3AF",
         deep_gray: "#21212D",
-        dark_gray: "2C2C38",
-        gray: "656567",
-        light_gray: "E2E3E7",
-        light_blue: "E2F7FE",
+        dark_gray: "#2C2C38",
+        gray: "#656567",
+        light_gray: "#E2E3E7",
+        light_blue: "#E2F7FE",
     
       },
       screens: {

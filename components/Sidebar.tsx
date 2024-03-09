@@ -31,8 +31,8 @@ const Sidebar = () => {
             </div>
           </div>
           <div className="self-stretch px-6 py-3 bg-indigo-500 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex">
-          <Image src={theme === "dark"?kanban_white: kanban_gray} width={16} height={16} alt="kanban" className="" />
-            <div className="text-center text-[#656567] dark:text-zinc-200text-sm font-semibold font-saira leading-none tracking-wider">
+          <Image src={kanban_white} width={16} height={16} alt="kanban" className="" />
+            <div className="text-center text-light_gray dark:text-zinc-200text-sm font-semibold font-saira leading-none tracking-wider">
               Platform Launch
             </div>
           </div>
