@@ -13,7 +13,7 @@ const SwitchTheme = () => {
 
   return (
     
-    <div className="w-[237px] h-12 px-12 py-3 bg-indigo-50 dark:bg-zinc-800 rounded justify-between items-center inline-flex">
+    <div className="w-[237px] h-12 px-12 py-3 bg-light_blue dark:bg-deep_gray rounded justify-between items-center inline-flex">
       <Image src={theme === "dark"?light_mode: light_mode_gray} width={24} height={24} alt="light" className="" />
       <div className="w-[48px] h-[24px] bg-fiolet rounded-full flex items-center">
         <div

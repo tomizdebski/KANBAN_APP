@@ -1,4 +1,5 @@
 import ButtonAddColumn from "@/components/ButtonAddColumn";
+import CardTask from "@/components/CardTask";
 import Column from "@/components/Column";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -20,6 +21,7 @@ export default function Home() {
             <Column color="blue"/>
             <Column color="fiolet"/>
             <ButtonAddColumn/>
+            
           </div>
         </div>
         
