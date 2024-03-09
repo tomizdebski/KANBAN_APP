@@ -16,7 +16,7 @@ const FormAddTask = () => {
   const { systemTheme, theme, setTheme } = useTheme();
     const [collapse, setCollapse] = useState(false);
 
-  if (visibleForm)
+  if (!visibleForm)
     return (
       <div 
       onClick={() => setVisibleForm(!visibleForm)}
@@ -28,7 +28,7 @@ const FormAddTask = () => {
       </div>
     );
 
-  if (!visibleForm)
+  if (visibleForm)
     return (
       <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
         <div className="w-[473px] h-[764px] px-7 py-[26px] bg-indigo-50 dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
