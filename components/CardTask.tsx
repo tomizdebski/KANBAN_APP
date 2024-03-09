@@ -104,9 +104,9 @@ const CardTask = () => {
               Todo
 
               {collapse && (<div className="text-gray  dark:text-light_gray text-xs font-normal font-saira leading-none tracking-wide">
-                Due date: 12/12/2021
+                Doing
                 <br />
-                Created by: John Doe
+                Done
               </div>)}
             </div>
             <Image
@@ -114,7 +114,7 @@ const CardTask = () => {
               width={16}
               height={16}
               alt="collapse"
-              className="self-start"
+              className={!collapse ? "self-start": "rotate-180 self-start"}
               onClick={() => setCollapse(!collapse)}
             />
           </div>
