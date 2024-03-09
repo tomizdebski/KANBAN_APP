@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import kanban_gray from "../public/icons/kanban_gray.svg";
 import kanban_white from "../public/icons/kanban_white.svg";
-import add from "../public/icons/add.svg";
+import add from "../public/icons/add_fiolet.svg";
 import logo from "../public/icons/logo.svg";
 import visible from "../public/icons/visible.svg";
 import SwitchTheme from "./SwitchTheme";
@@ -16,7 +16,7 @@ const Sidebar = () => {
 
 
   return (
-    <div className="w-[285px] h-[1018px] bg-gray-800 flex-col justify-between items-start inline-flex">
+    <div className="w-[285px] h-[100vh] bg-gray-800 flex-col justify-between items-start inline-flex">
       <div className="w-[227px] h-[382px] flex-col justify-center items-center gap-[37px] flex">
         <div className="self-stretch h-16 px-6 justify-start items-center gap-4 inline-flex">
             <Image src={logo} width={36} height={36} alt="kanban" className="" />
@@ -52,7 +52,7 @@ const Sidebar = () => {
             <div className="justify-center items-center gap-1 flex">
               
               <Image src={theme === "dark"?kanban_white: kanban_gray} width={16} height={16} alt="kanban" className="" />
-              <Image src={add} width={16} height={16} alt="kanban" className="" />
+              <Image src={add} width={12} height={12} alt="add" className="" />
               
               <div className="text-center text-indigo-500 text-sm font-semibold font-saira leading-none tracking-wider">
                 Create New Board
