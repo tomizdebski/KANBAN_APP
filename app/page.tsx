@@ -1,3 +1,4 @@
+import ButtonAddColumn from "@/components/ButtonAddColumn";
 import Column from "@/components/Column";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -18,7 +19,7 @@ export default function Home() {
             <Column color="fiolet"/>
             <Column color="blue"/>
             <Column color="fiolet"/>
-            <div>3</div>
+            <ButtonAddColumn/>
           </div>
         </div>
         
