@@ -85,16 +85,19 @@ const Board: React.FC = () => {
   };
 
   return (
-    <div className="flex w-[60vw] overflow-auto">
-      <DragDropContext onDragEnd={onDragEnd}>
+    <div>
+      <DragDropContext
+        onDragEnd={onDragEnd}
+      >
         <div className="flex">
           {state.columnOrder.map((columnId) => {
             const column = state.columns[columnId];
-            const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
+            const tasks = column.taskIds.map(
+              (taskId) => state.tasks[taskId]
+            );
 
             return <Column key={column.id} column={column} tasks={tasks} />;
           })}
-          <ButtonAddColumn />
         </div>
       </DragDropContext>
     </div>
