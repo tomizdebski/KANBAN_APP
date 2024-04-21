@@ -10,7 +10,8 @@ import collapse_light from "../public/icons/collapse_light.svg";
 import close_dark from "../public/icons/close_dark.svg";
 import close_light from "../public/icons/close_light.svg";
 
-const CardTask = () => {
+
+const Task = () => {
   const [show, setShow] = useState(false);
   const [collapse, setCollapse] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
@@ -124,4 +125,4 @@ const CardTask = () => {
   );
 };
 
-export default CardTask;
+export default Task;

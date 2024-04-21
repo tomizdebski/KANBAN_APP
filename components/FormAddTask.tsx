@@ -30,7 +30,7 @@ const FormAddTask = () => {
 
   if (visibleForm)
     return (
-      <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+      <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-80 z-50">
         <div className="w-[473px] h-[764px] px-7 py-[26px] bg-indigo-50 dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
           <div className="self-stretch p-2.5 justify-start items-center gap-2.5 inline-flex">
             <div className="justify-start items-center gap-2.5 flex">
