@@ -36,13 +36,15 @@ const KanabnBoard = () => {
   return (
     <div
       className="
-        m-auto
+        
         flex
         min-h-screen
         w-full
         overflow-x-hidden
         overflow-y-hidden
-        px-[40px]
+        
+        text-dark_gray dark:text-white
+        bg-white dark:bg-dark_gray
         "
     >
       <DndContext
@@ -51,8 +53,8 @@ const KanabnBoard = () => {
         onDragEnd={onDragEnd}
         onDragOver={onDragOver}
       >
-        <div className=" flex gap-4">
-          <div className="flex gap-4">
+        <div className=" flex gap-4 w-[60vw] overflow-auto">
+          <div className="flex gap-4 ">
             <SortableContext items={columnsId}>
               {columns.map((column) => (
                 <ColumnContainer
@@ -71,16 +73,15 @@ const KanabnBoard = () => {
           <button
             onClick={() => createNewColumn()}
             className="
-            h-[60px] 
-            w-[300px] 
-            min-w-[350px] 
+            h-[700px] 
+            w-[220px] 
+            min-w-[200px] 
             cursor-pointer 
             rounded-lg 
-            bg-mainBackgroundColor 
-            border-2 
-            border-columnBackgroundColor 
+            bg-light_blue dark:bg-deep_gray
+            
             p-4 
-            ring-rose-500 
+            ring-fiolet 
             hover:ring-2
             flex
             gap-2"

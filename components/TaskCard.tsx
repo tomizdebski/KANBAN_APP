@@ -47,7 +47,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
             <div
             ref={setNodeRef}
             style={style}
-            className="bg-gray-900 p-2 h-[100px] items-center flex text-left rounded-xl border-2 border-rose-500 cursor-grab justify-between opacity-30"
+            className="bg-gray-900 p-2 h-[100px] items-center flex text-left rounded-xl border-2 border-fiolet cursor-grab justify-between opacity-30"
             ></div>
         );
     }
@@ -59,7 +59,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
             style={style}
             {...attributes}
             {...listeners}
-            className="bg-gray-900 p-2 h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab justify-between opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out">
+            className="bg-white dark:bg-dark_gray p-2 h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-fiolet cursor-grab justify-between opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out">
                 <textarea className="h-[90%] w-full resize-none border-none rounded bg-transparent text-white focus:outline-none" 
                 value={task.content}
                 autoFocus
@@ -83,12 +83,12 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
     {...attributes}
     {...listeners}
     onClick={toggleEditMode}
-    className="bg-gray-900 p-2 h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab justify-between opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out task"
+    className=" p-2 h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-fiolet cursor-grab justify-between opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out dark:bg-dark_gray bg-white"
     onMouseEnter={() => setMouseIsOver(true)}
     onMouseLeave={() => setMouseIsOver(false)}
     
     >
-        <p className="my-auto h-[90%] w-full overflow-y-auto overflow-x-hidden whitespace-pre-wrap">
+        <p className="my-auto h-[90%] w-full overflow-y-auto overflow-x-hidden whitespace-pre-wrap ">
             {task.content}
         </p>
       

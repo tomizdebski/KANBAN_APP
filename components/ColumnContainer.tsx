@@ -56,7 +56,7 @@ const ColumnContainer = (props: Props) => {
       <div
         ref={setNodeRef}
         style={style}
-        className="bg-mainBackgroundColor border-2 border-rose-500 opacity-60 w-[350px] h-[500px] max-h-[500px] rounded-md flex flex-col"
+        className="bg-light_blue dark:bg-deep_gray border-2 border-fiolet opacity-60 w-[220px] h-[700px] max-h-[700px] rounded-md flex flex-col"
       ></div>
     );
   }
@@ -66,26 +66,27 @@ const ColumnContainer = (props: Props) => {
       ref={setNodeRef}
       style={style}
       className="
-    bg-mainBackgroundColor 
-    w-[350px] 
+    
+    w-[220px] 
     h-[700px] 
     max-h-[700px] 
     rounded-md flex flex-col
+    bg-light_blue dark:bg-deep_gray
     "
     >
       <div
         {...attributes}
         {...listeners}
         onClick={() => setEditMode(true)}
-        className="bg-mainBackgroundColor  h-[60px] text-md  rounded-md rounded-b-none p-3 font-bold border-columnBackgroundColor border-4 flex items-center justify-between"
+        className="bg-light_blue dark:bg-deep_gray  h-[60px] text-md  rounded-md rounded-b-none p-3 font-bold  flex items-center justify-between"
       >
         <div className="flex gap-2">
           
 
-          {!editMode && <span>{column.title}</span>}
+          {!editMode && <span className="uppercase">{column.title}</span>}
           {editMode && (
             <input
-              className="bg-black focus:border-rose-500  border rounded px-2 outline-none"
+              className="bg-black focus:border-rose-500 w-[150px] border rounded px-2 outline-none"
               value={column.title}
               onChange={(e) => updateColumn(column.id, e.target.value)}
               autoFocus
@@ -118,7 +119,7 @@ const ColumnContainer = (props: Props) => {
         </SortableContext>
       </div>
       <button
-        className="flex items-center gap-2 p-4  border-2 rounded-md border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
+        className="pl-4 pr-6 py-3 bg-indigo-500  shadow justify-center items-center gap-2 flex bg-none"
         onClick={() => createTask(column.id)}
       >
         <PlusIcon />
