@@ -92,7 +92,7 @@ const KanabnBoard = () => {
           </button>
         </div>
 
-        {createPortal(
+        {/* {createPortal(
           <DragOverlay>
             {activeColumn && (
               <ColumnContainer
@@ -114,9 +114,8 @@ const KanabnBoard = () => {
                 updateTask={updateTask}
               />
             )}
-          </DragOverlay>,
-          document.body
-        )}
+          </DragOverlay>, document.body
+        )} */}
       </DndContext>
     </div>
   );
