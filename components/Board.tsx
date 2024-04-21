@@ -44,7 +44,7 @@ const KanabnBoard = () => {
         overflow-y-hidden
         
         text-dark_gray dark:text-white
-        bg-white dark:bg-dark_gray
+        bg-light_blue dark:bg-deep_gray
         "
     >
       <DndContext
@@ -73,21 +73,22 @@ const KanabnBoard = () => {
           <button
             onClick={() => createNewColumn()}
             className="
-            h-[700px] 
+            h-[80%]
             w-[220px] 
             min-w-[200px] 
             cursor-pointer 
-            rounded-lg 
+            
             bg-light_blue dark:bg-deep_gray
             
             p-4 
-            ring-fiolet 
-            hover:ring-2
+            
+            hover:text-fiolet
             flex
-            gap-2"
+            gap-2
+            items-center"
           >
             <PlusIcon />
-            Add column
+            Add Column
           </button>
         </div>
 
