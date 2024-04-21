@@ -14,7 +14,11 @@ export default function Home() {
         <Sidebar />
         <div className="flex flex-col">
           <Navbar />
-          <Board />
+          <div className="overflow-x-hidden
+        overflow-y-hidden">
+             <Board />
+          </div>
+         
         </div>
         
       </div>
