@@ -42,6 +42,7 @@ const Sidebar = (props: Props) => {
 
           {boards.map((el) => (
             <div
+              key={el.id}
               onClick={() => setActiveBoard(el.id)}
               className={
                 el.id === activeBoard
