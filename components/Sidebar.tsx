@@ -52,7 +52,7 @@ const Sidebar = (props: Props) => {
             >
               <KanbanIcon />
               <div className="text-center dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
-                {el.title}
+                {el.title}   
               </div>
               <button
                 className="stroke-gray-500 hover:stroke-white hover:bg-columnBackgroundColor rounded  "
@@ -119,7 +119,7 @@ const Sidebar = (props: Props) => {
             className=""
           />
           <div className="text-center text-[#656567] dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
-            Hide Sidebar
+            Hide Sidebar.
           </div>
         </div>
       </div>
