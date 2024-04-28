@@ -14,7 +14,7 @@ const Navbar = () => {
             <div className="justify-between items-center flex">
                 <div className="text-dark_gray dark:text-light_gray text-2xl font-bold font-saira leading-loose tracking-wider">Platform Launch</div>
                 <div className="justify-start items-center gap-[22px] flex">
-                    <FormAddTask />
+                    
                     <Image src={theme === "dark"?dots_light: dots_dark} width={6} height={6} alt="kanban" className="" />
 
                 </div>

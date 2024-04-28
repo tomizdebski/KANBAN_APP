@@ -1,3 +1,4 @@
+
 export type Id = string | number;
 
 export type Column = {
@@ -8,5 +9,22 @@ export type Column = {
 export type Task = {
   id: Id;
   columnId: Id;
+  title: string;
   content: string;
+  subtasks: Subtask[];
+  status: "todo" | "doing" | "done";
 };
+
+export type Subtask = {
+  id: Id;
+  taskId: Id;
+  content: string;
+  completed: boolean;
+};
+
+export type BoardType = {
+id: Id;
+title: string;
+columns: Column[] | null;  
+};
+

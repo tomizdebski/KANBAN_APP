@@ -16,6 +16,7 @@ import {
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
+import { Subtask } from "../types";
 
 const KanabnBoard = () => {
   const [columns, setColumns] = useState<Column[]>([]);
@@ -148,11 +149,14 @@ const KanabnBoard = () => {
     );
   }
 
-  function createTask(columnId: Id) {
+  function createTask(columnId: Id, title: string, content: string, status: "todo" | "doing" | "done", subtasks: Subtask[]) {
     const newTask: Task = {
       id: generateId(),
       columnId,
-      content: `Task ${tasks.length + 1}`,
+      title,
+      content,
+      status,
+      subtasks,
     };
     setTasks([...tasks, newTask]);
   }
@@ -262,3 +266,4 @@ const KanabnBoard = () => {
 };
 
 export default KanabnBoard;
+
