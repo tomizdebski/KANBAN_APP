@@ -6,12 +6,14 @@ import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import PlusIcon from "../icons/PlusIcon";
 import TaskCard from "./TaskCard";
+import { Subtask } from "../types";
+import FormAddTask from "./FormAddTask";
 
 interface Props {
   column: Column;
   deleteColumn: (id: Id) => void;
   updateColumn: (id: Id, title: string) => void;
-  createTask: (columnId: Id) => void;
+  createTask: (columnId: Id, title: string, content: string, status: "todo" | "doing" | "done", subtasks: Subtask[]) => void;
   deleteTask: (id: Id) => void;
   updateTask: (id: Id, content: string) => void;
   tasks: Task[];
@@ -119,13 +121,14 @@ const ColumnContainer = (props: Props) => {
           ))}
         </SortableContext>
       </div>
-      <button
+      <FormAddTask createTask={createTask} columnId={column.id} />
+      {/* <button
         className="m-4 pl-4 pr-6 py-3 bg-indigo-500 rounded-full shadow justify-center items-center gap-2 flex bg-none"
         onClick={() => createTask(column.id)}
       >
         <PlusIcon />
         Add task
-      </button>
+      </button> */}
     </div>
   );
 };
