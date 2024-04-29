@@ -19,16 +19,22 @@ export default function Home() {
     },
   ]);
 
+  const [board, setBoard] = useState<BoardType>({
+    id: "2",
+    title: "Marketing Plan",
+    columns: [],
+  });
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between ">
       <div className="flex">
-        <Sidebar boards={boards} createNewBoard={createNewBoard} deleteBoard={deleteBoard} updateBoard={updateBoard}/>
+        <Sidebar boards={boards} setBoard={setBoard} createNewBoard={createNewBoard} deleteBoard={deleteBoard} updateBoard={updateBoard}/>
         <div className="flex flex-col">
-          <Navbar />
+          <Navbar board={board}/>
           <div
             className="overflow-x-hidden overflow-y-hidden"
           >
-            <Board />
+            <Board board={board}/>
           </div>
         </div>
       </div>

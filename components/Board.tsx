@@ -1,7 +1,7 @@
 "use client";
 import PlusIcon from "../icons/PlusIcon";
 import { useMemo, useState } from "react";
-import { Column, Id, Task } from "../types";
+import { BoardType, Column, Id, Task } from "../types";
 import ColumnContainer from "./ColumnContainer";
 import {
   DndContext,
@@ -18,7 +18,14 @@ import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
 import { Subtask } from "../types";
 
-const KanabnBoard = () => {
+interface Props {
+  board: BoardType;
+}
+
+const KanabnBoard = ({board} : Props) => {
+
+  const [currentBoard , setCurrentBoard] = useState<BoardType>(board);
+
   const [columns, setColumns] = useState<Column[]>([]);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
   const [tasks, setTasks] = useState<Task[]>([]);

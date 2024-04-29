@@ -13,6 +13,7 @@ import TrashIcon from "@/icons/TrashIcon";
 
 interface Props {
   boards: BoardType[];
+  setBoard: (board: BoardType) => void;
   createNewBoard: (title: string) => void;
   deleteBoard: (id: Id) => void;
   updateBoard: (id: Id, title: string) => void;
@@ -22,7 +23,7 @@ const Sidebar = (props: Props) => {
   const [activeBoard, setActiveBoard] = useState<Id>(0);
   const [editMode, setEditMode] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const { boards, createNewBoard, deleteBoard, updateBoard } = props;
+  const { boards,setBoard, createNewBoard, deleteBoard, updateBoard } = props;
 
   return (
     <div className="w-[285px] h-[100vh] bg-gray-800 flex-col justify-between items-start inline-flex">
@@ -43,7 +44,10 @@ const Sidebar = (props: Props) => {
           {boards.map((el) => (
             <div
               key={el.id}
-              onClick={() => setActiveBoard(el.id)}
+              onClick={() => {
+                setActiveBoard(el.id);
+                setBoard(el);
+              }}
               className={
                 el.id === activeBoard
                   ? `text-dark_gray dark:text-zinc-200 self-stretch px-6 py-3 bg-indigo-500 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex cursor-pointer hover:opacity-50`
