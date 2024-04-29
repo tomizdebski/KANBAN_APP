@@ -1,6 +1,6 @@
 "use client";
 import PlusIcon from "../icons/PlusIcon";
-import { useMemo, useState } from "react";
+import { use, useEffect, useMemo, useState } from "react";
 import { BoardType, Column, Id, Task } from "../types";
 import ColumnContainer from "./ColumnContainer";
 import {
@@ -20,11 +20,12 @@ import { Subtask } from "../types";
 
 interface Props {
   board: BoardType;
+  updateBoards: (board: BoardType) => void;
 }
 
-const KanabnBoard = ({board} : Props) => {
+const KanabnBoard = ({board, updateBoards} : Props) => {
 
-  const [currentBoard , setCurrentBoard] = useState<BoardType>(board);
+  
 
   const [columns, setColumns] = useState<Column[]>([]);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
@@ -40,6 +41,19 @@ const KanabnBoard = ({board} : Props) => {
       },
     })
   );
+
+  useEffect(() => {
+    setColumns([...board.columns]);
+    setTasks([...board.tasks]);
+    return () => {
+      updateBoards({
+        ...board,
+        columns,
+        tasks,
+      });
+    }
+    
+  }, [board]);
 
   return (
     <div

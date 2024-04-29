@@ -25,6 +25,7 @@ export type Subtask = {
 export type BoardType = {
 id: Id;
 title: string;
-columns: Column[] | null;  
+columns: Column[] | [];  
+tasks: Task[] | [];
 };
 

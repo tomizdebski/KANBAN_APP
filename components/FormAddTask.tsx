@@ -40,7 +40,7 @@ const FormAddTask = (props: Props) => {
     return (
       <div
         onClick={() => setVisibleForm(!visibleForm)}
-        className="pl-4 pr-6 py-3 bg-indigo-500 rounded-[20px] shadow justify-center items-center gap-2 flex"
+        className="pl-4 pr-6 py-3   rounded-[20px] shadow justify-center items-center gap-2 flex cursor-pointer hover:opacity-50"
       >
         <Image src={add} width={12} height={12} alt="add" className="" />
         <div className="text-center text-light_gray text-sm font-bold font-saira leading-none tracking-wide">

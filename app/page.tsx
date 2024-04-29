@@ -10,19 +10,36 @@ export default function Home() {
     {
       id: "1",
       title: "Platform Lunch",
-      columns: [],
+      columns: [
+        { id: "1", title: "To Do" },
+        { id: "2", title: "In Progress" },
+        { id: "3", title: "Done" },
+      ],
+      tasks: [],
     },
     {
       id: "2",
       title: "Marketing Plan",
-      columns: [],
+      columns: [
+        { id: "1", title: "Do" },
+        { id: "2", title: "In Progress" },
+        { id: "3", title: "Done" },
+      ],
+      tasks: [],
     },
   ]);
 
   const [board, setBoard] = useState<BoardType>({
     id: "2",
     title: "Marketing Plan",
-    columns: [],
+    columns: [
+      { id: "1", title: "To Do" },
+      { id: "2", title: "In Progress" },
+      { id: "3", title: "Done" },
+    ],
+    tasks: [
+      
+    ],
   });
 
   return (
@@ -34,18 +51,29 @@ export default function Home() {
           <div
             className="overflow-x-hidden overflow-y-hidden"
           >
-            <Board board={board}/>
+            <Board board={board} updateBoards={updateBoards}/>
           </div>
         </div>
       </div>
     </main>
   );
 
+  function updateBoards(board: BoardType) {
+    const newBoards = boards.map((el) => {
+      if (el.id === board.id) {
+        return board;
+      }
+      return el;
+    });
+    setBoards(newBoards);
+  }
+
   function createNewBoard(title: string) {
     const boardToAdd: BoardType = {
       id: generateId(),
       title,
       columns: [],
+      tasks: [],
     };
     setBoards([...boards, boardToAdd]);
   };
