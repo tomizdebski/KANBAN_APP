@@ -16,23 +16,38 @@ import {
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
-import { Subtask } from "../types";
+
+import Sidebar from "./Sidebar";
+import HideButton from "./HideButton";
+import Navbar from "./Navbar";
 
 interface Props {
-  board: BoardType;
-  updateBoards: (board: BoardType) => void;
+  boards: BoardType[];
+  activeBoard: BoardType;
+  setBoards: (boards: BoardType[]) => void;
+  setActiveBoard: (board: BoardType) => void;
 }
 
-const KanabnBoard = ({board, updateBoards} : Props) => {
+const KanabnBoard = ({
+  boards,
+  activeBoard,
+  setBoards,
+  setActiveBoard,
+}: Props) => {
 
-  
 
   const [columns, setColumns] = useState<Column[]>([]);
-  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
+  const columnsId = useMemo(() => columns?.map((col) => col.id), [columns]);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
   const [activeTask, setActiveTask] = useState<Task | null>(null);
+  const [hideSidebar, setHideSidebar] = useState(true);
+
+  useEffect(() => {
+    setColumns(activeBoard.columns);
+    setTasks(activeBoard.tasks);
+  }, [activeBoard]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -56,45 +71,53 @@ const KanabnBoard = ({board, updateBoards} : Props) => {
   }, [board]);
 
   return (
-    <div
-      className="
-        
+    <div className="flex flex-col">
+      <Navbar activeBoard={activeBoard} />
+      <div
+        className="
         flex
         min-h-screen
         w-full
         overflow-x-hidden
         overflow-y-hidden
-        
         text-dark_gray dark:text-white
         bg-light_blue dark:bg-deep_gray
         "
-    >
-      <DndContext
-        sensors={sensors}
-        onDragStart={onDragStart}
-        onDragEnd={onDragEnd}
-        onDragOver={onDragOver}
       >
-        <div className=" flex gap-4 w-[60vw] overflow-auto">
-          <div className="flex gap-4 ">
-            <SortableContext items={columnsId}>
-              {columns.map((column) => (
-                <ColumnContainer
-                  key={column.id}
-                  column={column}
-                  deleteColumn={deleteColumn}
-                  updateColumn={updateColumn}
-                  createTask={createTask}
-                  deleteTask={deleteTask}
-                  updateTask={updateTask}
-                  tasks={tasks.filter((task) => task.columnId === column.id)}
-                />
-              ))}
-            </SortableContext>
-          </div>
-          <button
-            onClick={() => createNewColumn()}
-            className="
+        {hideSidebar && (
+          <Sidebar
+            boards={boards}
+            activeBoard={activeBoard}
+            setBoards={setBoards}
+            setActiveBoard={setActiveBoard}
+          />
+        )}
+        <DndContext
+          sensors={sensors}
+          onDragStart={onDragStart}
+          onDragEnd={onDragEnd}
+          onDragOver={onDragOver}
+        >
+          <div className=" flex gap-4 w-[60vw] overflow-auto">
+            <div className="flex gap-4 ">
+              <SortableContext items={columnsId}>
+                {columns.map((column) => (
+                  <ColumnContainer
+                    key={column.id}
+                    column={column}
+                    deleteColumn={deleteColumn}
+                    updateColumn={updateColumn}
+                    createTask={createTask}
+                    deleteTask={deleteTask}
+                    updateTask={updateTask}
+                    tasks={tasks.filter((task) => task.columnId === column.id)}
+                  />
+                ))}
+              </SortableContext>
+            </div>
+            <button
+              onClick={() => createNewColumn()}
+              className="
             h-[80%]
             w-[220px] 
             min-w-[200px] 
@@ -108,53 +131,84 @@ const KanabnBoard = ({board, updateBoards} : Props) => {
             flex
             gap-2
             items-center"
-          >
-            <PlusIcon />
-            Add Column
-          </button>
-        </div>
 
-        {/* {createPortal(
-          <DragOverlay>
-            {activeColumn && (
-              <ColumnContainer
-                column={activeColumn}
-                deleteColumn={deleteColumn}
-                updateColumn={updateColumn}
-                createTask={createTask}
-                deleteTask={deleteTask}
-                updateTask={updateTask}
-                tasks={tasks.filter(
-                  (task) => task.columnId === activeColumn.id
-                )}
-              />
-            )}
-            {activeTask && (
-              <TaskCard
-                task={activeTask}
-                deleteTask={deleteTask}
-                updateTask={updateTask}
-              />
-            )}
-          </DragOverlay>,
-          document.body
-        )} */}
-      </DndContext>
+            >
+              <PlusIcon />
+              Add Column
+            </button>
+          </div>
+
+          {createPortal(
+            <DragOverlay>
+              {activeColumn && (
+                <ColumnContainer
+                  column={activeColumn}
+                  deleteColumn={deleteColumn}
+                  updateColumn={updateColumn}
+                  createTask={createTask}
+                  deleteTask={deleteTask}
+                  updateTask={updateTask}
+                  tasks={tasks.filter(
+                    (task) => task.columnId === activeColumn.id
+                  )}
+                />
+              )}
+              {activeTask && (
+                <TaskCard
+                  task={activeTask}
+                  deleteTask={deleteTask}
+                  updateTask={updateTask}
+                />
+              )}
+            </DragOverlay>,
+            document.body
+          )}
+        </DndContext>
+        <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar} />
+      </div>
+
     </div>
   );
+
   function createNewColumn() {
     const columnToAdd: Column = {
       id: generateId(),
       title: `Column ${columns.length + 1}`,
     };
     setColumns([...columns, columnToAdd]);
-  }
+    console.log("boards", boards, "activeBoard", activeBoard);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: [...board.columns, columnToAdd],
+          };
+        }
+        return board;
+      })
+    );
+
+    
+  };
+
   function deleteColumn(id: Id) {
     const delColumns = columns.filter((column) => column.id !== id);
     setColumns(delColumns);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: delColumns,
+          };
+        }
+        return board;
+      })
+    );
 
     console.log("Column deleted", id);
-  }
+  };
 
   function updateColumn(id: Id, title: string) {
     setColumns((columns) =>
@@ -166,6 +220,25 @@ const KanabnBoard = ({board, updateBoards} : Props) => {
           };
         }
         return column;
+      })
+    );
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: columns.map((column) => {
+              if (column.id === id) {
+                return {
+                  ...column,
+                  title,
+                };
+              }
+              return column;
+            }),
+          };
+        }
+        return board;
       })
     );
   }
@@ -180,6 +253,17 @@ const KanabnBoard = ({board, updateBoards} : Props) => {
       subtasks,
     };
     setTasks([...tasks, newTask]);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            tasks: [...board.tasks, newTask],
+          };
+        }
+        return board;
+      })
+    );
   }
 
   function deleteTask(id: Id) {
@@ -187,6 +271,17 @@ const KanabnBoard = ({board, updateBoards} : Props) => {
     setTasks(delTasks);
     const newTasks = tasks.filter((task) => task.id !== id);
     setTasks(newTasks);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            tasks: newTasks,
+          };
+        }
+        return board;
+      })
+    );
   }
 
   function updateTask(id: Id, content: string) {
@@ -201,6 +296,27 @@ const KanabnBoard = ({board, updateBoards} : Props) => {
         return task;
       })
     );
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            tasks: tasks.map((task) => {
+              if (task.id === id) {
+                return {
+                  ...task,
+                  content,
+                };
+              }
+              return task;
+            }),
+          };
+        }
+        return board;
+      })
+    );
+      
+    
   }
 
   function onDragStart(event: DragStartEvent) {
@@ -271,14 +387,11 @@ const KanabnBoard = ({board, updateBoards} : Props) => {
       setTasks((tasks) => {
         const activeIndex = tasks.findIndex((task) => task.id === activeId);
 
-        
-
         tasks[activeIndex].columnId = overId;
 
         return arrayMove(tasks, activeIndex, activeIndex);
       });
     }
-
   }
 
   function generateId() {
