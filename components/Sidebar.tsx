@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import kanban_gray from "../public/icons/kanban_gray.svg";
 import kanban_white from "../public/icons/kanban_white.svg";
+
 import add from "../public/icons/add_fiolet.svg";
 import SwitchTheme from "./SwitchTheme";
 import { useTheme } from "next-themes";
