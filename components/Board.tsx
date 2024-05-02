@@ -1,7 +1,7 @@
 "use client";
 import PlusIcon from "../icons/PlusIcon";
-import { useMemo, useState } from "react";
-import { Column, Id, Task } from "../types";
+import { use, useEffect, useMemo, useState } from "react";
+import { BoardType, Column, Id, Task } from "../types";
 import ColumnContainer from "./ColumnContainer";
 import {
   DndContext,
@@ -20,14 +20,32 @@ import Sidebar from "./Sidebar";
 import HideButton from "./HideButton";
 import Navbar from "./Navbar";
 
-const KanabnBoard = () => {
+interface Props {
+  boards: BoardType[];
+  activeBoard: BoardType;
+  setBoards: (boards: BoardType[]) => void;
+  setActiveBoard: (board: BoardType) => void;
+}
+
+const KanabnBoard = ({
+  boards,
+  activeBoard,
+  setBoards,
+  setActiveBoard,
+}: Props) => {
+
   const [columns, setColumns] = useState<Column[]>([]);
-  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
+  const columnsId = useMemo(() => columns?.map((col) => col.id), [columns]);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
   const [activeTask, setActiveTask] = useState<Task | null>(null);
   const [hideSidebar, setHideSidebar] = useState(true);
+
+  useEffect(() => {
+    setColumns(activeBoard.columns);
+    setTasks(activeBoard.tasks);
+  }, [activeBoard]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -39,7 +57,7 @@ const KanabnBoard = () => {
 
   return (
     <div className="flex flex-col">
-      <Navbar />
+      <Navbar activeBoard={activeBoard} />
       <div
         className="
         flex
@@ -51,7 +69,14 @@ const KanabnBoard = () => {
         bg-light_blue dark:bg-deep_gray
         "
       >
-        {hideSidebar && (<Sidebar />)}
+        {hideSidebar && (
+          <Sidebar
+            boards={boards}
+            activeBoard={activeBoard}
+            setBoards={setBoards}
+            setActiveBoard={setActiveBoard}
+          />
+        )}
         <DndContext
           sensors={sensors}
           onDragStart={onDragStart}
@@ -123,7 +148,7 @@ const KanabnBoard = () => {
             document.body
           )}
         </DndContext>
-        <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar}/>
+        <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar} />
       </div>
     </div>
   );
@@ -134,13 +159,39 @@ const KanabnBoard = () => {
       title: `Column ${columns.length + 1}`,
     };
     setColumns([...columns, columnToAdd]);
-  }
+    console.log("boards", boards, "activeBoard", activeBoard);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: [...board.columns, columnToAdd],
+          };
+        }
+        return board;
+      })
+    );
+
+    
+  };
+
   function deleteColumn(id: Id) {
     const delColumns = columns.filter((column) => column.id !== id);
     setColumns(delColumns);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: delColumns,
+          };
+        }
+        return board;
+      })
+    );
 
     console.log("Column deleted", id);
-  }
+  };
 
   function updateColumn(id: Id, title: string) {
     setColumns((columns) =>
@@ -154,6 +205,25 @@ const KanabnBoard = () => {
         return column;
       })
     );
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: columns.map((column) => {
+              if (column.id === id) {
+                return {
+                  ...column,
+                  title,
+                };
+              }
+              return column;
+            }),
+          };
+        }
+        return board;
+      })
+    );
   }
 
   function createTask(columnId: Id) {
@@ -163,6 +233,17 @@ const KanabnBoard = () => {
       content: `Task ${tasks.length + 1}`,
     };
     setTasks([...tasks, newTask]);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            tasks: [...board.tasks, newTask],
+          };
+        }
+        return board;
+      })
+    );
   }
 
   function deleteTask(id: Id) {
@@ -170,6 +251,17 @@ const KanabnBoard = () => {
     setTasks(delTasks);
     const newTasks = tasks.filter((task) => task.id !== id);
     setTasks(newTasks);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            tasks: newTasks,
+          };
+        }
+        return board;
+      })
+    );
   }
 
   function updateTask(id: Id, content: string) {
@@ -184,6 +276,27 @@ const KanabnBoard = () => {
         return task;
       })
     );
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            tasks: tasks.map((task) => {
+              if (task.id === id) {
+                return {
+                  ...task,
+                  content,
+                };
+              }
+              return task;
+            }),
+          };
+        }
+        return board;
+      })
+    );
+      
+    
   }
 
   function onDragStart(event: DragStartEvent) {
