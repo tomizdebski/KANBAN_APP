@@ -16,7 +16,7 @@ const Sidebar = () => {
 
 
   return (
-    <div className="w-[285px] h-[90vh] bg-gray-800 flex-col justify-between items-start inline-flex">
+    <div className="w-[285px] h-[90vh] bg-gray-800 flex-col justify-between items-start inline-flex dark:bg-dark_gray bg-white">
       <div className="w-[227px] h-[382px] flex-col justify-center items-center gap-[37px] flex">
         
         <div className="self-stretch h-[273px] flex-col justify-between items-start flex">
@@ -58,12 +58,7 @@ const Sidebar = () => {
       </div>
       <div className="self-stretch h-[103px] px-6 flex-col justify-start items-start gap-[13px] flex">
         <SwitchTheme />
-        <div className="self-stretch py-3 rounded-tr-[20px] rounded-br-[20px] justify-start items-center gap-2 inline-flex">
-            <Image src={visible} width={16} height={16} alt="kanban" className="" />
-          <div className="text-center text-[#656567] dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
-            Hide Sidebar
-          </div>
-        </div>
+        
       </div>
     </div>
   );

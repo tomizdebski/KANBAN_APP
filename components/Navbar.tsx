@@ -1,6 +1,5 @@
 'use client';
-import React from 'react'
-import add from "../public/icons/add_white.svg";
+
 import Image from "next/image";
 import dots_light from "../public/icons/dots_light.svg";
 import dots_dark from "../public/icons/dots_dark.svg";
