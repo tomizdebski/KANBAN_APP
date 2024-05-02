@@ -6,12 +6,14 @@ import dots_light from "../public/icons/dots_light.svg";
 import dots_dark from "../public/icons/dots_dark.svg";
 import { useTheme } from "next-themes";
 import FormAddTask from './FormAddTask';
+import Logo from './Logo';
 
 const Navbar = () => {
     const { systemTheme, theme, setTheme } = useTheme();
     return (
-        <div className="w-[60vw] h-[84px]  py-5 bg-gray-800 flex-col items-between justify-between flex">
+        <div className="w-[90vw] h-[84px]  py-5 bg-gray-800 flex-col items-between justify-between flex">
             <div className="justify-between items-center flex">
+              <Logo />
                 <div className="text-dark_gray dark:text-light_gray text-2xl font-bold font-saira leading-loose tracking-wider">Platform Launch</div>
                 <div className="justify-start items-center gap-[22px] flex">
                     <FormAddTask />

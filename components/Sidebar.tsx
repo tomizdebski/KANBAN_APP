@@ -4,10 +4,10 @@ import Image from "next/image";
 import kanban_gray from "../public/icons/kanban_gray.svg";
 import kanban_white from "../public/icons/kanban_white.svg";
 import add from "../public/icons/add_fiolet.svg";
-import logo from "../public/icons/logo.svg";
 import visible from "../public/icons/visible.svg";
 import SwitchTheme from "./SwitchTheme";
 import { useTheme } from "next-themes";
+import Logo from "./Logo";
 
 const Sidebar = () => {
 
@@ -16,14 +16,9 @@ const Sidebar = () => {
 
 
   return (
-    <div className="w-[285px] h-[100vh] bg-gray-800 flex-col justify-between items-start inline-flex">
+    <div className="w-[285px] h-[90vh] bg-gray-800 flex-col justify-between items-start inline-flex">
       <div className="w-[227px] h-[382px] flex-col justify-center items-center gap-[37px] flex">
-        <div className="self-stretch h-16 px-6 justify-start items-center gap-4 inline-flex">
-            <Image src={logo} width={36} height={36} alt="kanban" className="" />
-          <div className="text-deep_gray dark:text-white text-large font-bold font-saira leading-9 tracking-wider">
-            kanban
-          </div>
-        </div>
+        
         <div className="self-stretch h-[273px] flex-col justify-between items-start flex">
           <div className="self-stretch px-6 justify-between items-start inline-flex">
             <div className="grow shrink basis-0 text-[#656567] dark:text-zinc-200 text-sm font-semibold font-saira leading-tight tracking-wider">
