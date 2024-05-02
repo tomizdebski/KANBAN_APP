@@ -122,7 +122,7 @@ const KanabnBoard = ({
             </button>
           </div>
 
-          {createPortal(
+          {/* {createPortal(
             <DragOverlay>
               {activeColumn && (
                 <ColumnContainer
@@ -146,7 +146,7 @@ const KanabnBoard = ({
               )}
             </DragOverlay>,
             document.body
-          )}
+          )} */}
         </DndContext>
         <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar} />
       </div>
