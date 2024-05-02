@@ -16,6 +16,7 @@ import {
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
+
 import Sidebar from "./Sidebar";
 import HideButton from "./HideButton";
 import Navbar from "./Navbar";
@@ -33,6 +34,7 @@ const KanabnBoard = ({
   setBoards,
   setActiveBoard,
 }: Props) => {
+
 
   const [columns, setColumns] = useState<Column[]>([]);
   const columnsId = useMemo(() => columns?.map((col) => col.id), [columns]);
@@ -54,6 +56,19 @@ const KanabnBoard = ({
       },
     })
   );
+
+  useEffect(() => {
+    setColumns([...board.columns]);
+    setTasks([...board.tasks]);
+    return () => {
+      updateBoards({
+        ...board,
+        columns,
+        tasks,
+      });
+    }
+    
+  }, [board]);
 
   return (
     <div className="flex flex-col">
@@ -116,6 +131,7 @@ const KanabnBoard = ({
             flex
             gap-2
             items-center"
+
             >
               <PlusIcon />
               Add Column
@@ -150,6 +166,7 @@ const KanabnBoard = ({
         </DndContext>
         <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar} />
       </div>
+
     </div>
   );
 
@@ -226,11 +243,14 @@ const KanabnBoard = ({
     );
   }
 
-  function createTask(columnId: Id) {
+  function createTask(columnId: Id, title: string, content: string, status: "todo" | "doing" | "done", subtasks: Subtask[]) {
     const newTask: Task = {
       id: generateId(),
       columnId,
-      content: `Task ${tasks.length + 1}`,
+      title,
+      content,
+      status,
+      subtasks,
     };
     setTasks([...tasks, newTask]);
     setBoards(
@@ -380,3 +400,4 @@ const KanabnBoard = ({
 };
 
 export default KanabnBoard;
+

@@ -1,3 +1,4 @@
+
 'use client';
 import Board from "@/components/Board";
 import { BoardType } from "@/types";
@@ -37,13 +38,17 @@ export default function Home() {
     };
   }, [boards]);
 
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between ">
       <div className="flex">
+
         <div className="flex ">
           <Board boards={boards} setBoards={setBoards} activeBoard={activeBoard} setActiveBoard={setActiveBoard}/>
+
         </div>
       </div>
     </main>
   );
+
 }
