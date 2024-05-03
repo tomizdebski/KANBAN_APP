@@ -63,10 +63,10 @@ const FormAddTask = ({createTask, columnId} : Props) => {
     return (
       <button
         onClick={() => setVisibleForm(!visibleForm)}
-        className="pl-4 pr-6 py-3 bg-indigo-500 rounded-[20px] shadow justify-center items-center gap-2 flex"
+        className="ml-2 pl-4 pr-6 py-3 border-indigo-500 border-2 rounded-xl shadow justify-center items-center gap-2 flex hover:opacity-50"
       >
         <Image src={add} width={12} height={12} alt="add" className="" />
-        <div className="text-center text-light_gray text-sm font-bold font-saira leading-none tracking-wide">
+        <div className="text-center text-gray dark:text-light_gray text-sm font-bold font-saira leading-none tracking-wide">
           Add New Task
         </div>
       </button>
@@ -78,7 +78,7 @@ const FormAddTask = ({createTask, columnId} : Props) => {
         onSubmit={handleSubmit}
         className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-80 z-50"
       >
-        <div className="w-[473px] h-[764px] px-7 py-[26px] bg-indigo-50 dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
+        <div className="w-[473px]  px-7 py-[26px] bg-indigo-50 dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
           <div className="self-stretch p-2.5 justify-start items-center gap-2.5 inline-flex">
             <div className="justify-start items-center gap-2.5 flex">
               <div className="w-[129px] text-center text-gray  dark:text-light_gray text-base font-semibold font-saira leading-none tracking-wide">
@@ -114,7 +114,7 @@ const FormAddTask = ({createTask, columnId} : Props) => {
               required
             />
           </div>
-          <div className="self-stretch h-[186px] flex-col justify-start items-end gap-4 flex">
+          <div className="self-stretch  flex-col justify-start items-end gap-4 flex">
             <div className="self-stretch h-[18px] text-gray  dark:text-light_gray text-xs font-bold font-saira leading-none tracking-wide">
               Subtasks
             </div>

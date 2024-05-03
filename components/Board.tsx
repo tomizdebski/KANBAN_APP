@@ -45,19 +45,19 @@ const KanabnBoard = ({
   useEffect(() => {
     setColumns(activeBoard.columns);
     setTasks(activeBoard.tasks);
-    setBoards(
-      boards.map((board) => {
-        if (board.id === activeBoard.id) {
-          return {
-            ...board,
-            columns: activeBoard.columns,
-            tasks: activeBoard.tasks,
-          };
-        }
-        return board;
-      })
-    )
-  }, [activeBoard, boards]);
+    setBoards(boards.map((board) => {
+      if (board.id === activeBoard.id) {
+        return {
+          ...board,
+          columns: activeBoard.columns,
+          tasks: activeBoard.tasks,
+        };
+      }
+      return board;
+    }));
+  }, [activeBoard]);
+
+  
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -96,7 +96,7 @@ const KanabnBoard = ({
           onDragOver={onDragOver}
         >
           <div className=" flex gap-4 w-[60vw] overflow-auto">
-            <div className="flex gap-4 ">
+            <div className="flex  ">
               <SortableContext items={columnsId}>
                 {columns.map((column) => (
                   <ColumnContainer
@@ -340,6 +340,8 @@ const KanabnBoard = ({
 
       return arrayMove(columns, activeColumnIndex, overColumnIndex);
     });
+    
+  
     
   }
 

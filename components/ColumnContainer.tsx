@@ -108,7 +108,7 @@ const ColumnContainer = (props: Props) => {
         </button>
       </div>
 
-      <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto">
+      <div className="flex flex-grow flex-col gap-2 pl-2 overflow-x-hidden overflow-y-auto">
         <SortableContext items={tasksIds}>
           {tasks.map((task) => (
             <TaskCard
