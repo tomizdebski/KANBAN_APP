@@ -45,7 +45,19 @@ const KanabnBoard = ({
   useEffect(() => {
     setColumns(activeBoard.columns);
     setTasks(activeBoard.tasks);
-  }, [activeBoard]);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: activeBoard.columns,
+            tasks: activeBoard.tasks,
+          };
+        }
+        return board;
+      })
+    )
+  }, [activeBoard, boards]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -227,20 +239,13 @@ const KanabnBoard = ({
   }
 
   function createTask(task: Task) {
-    const newTask: Task = {
-      id: generateId(),
-      columnId: task.columnId,
-      title: task.title,
-      content: task.content,
-      subtasks: task.subtasks,
-    };
-    setTasks([...tasks, newTask]);
+    setTasks([...tasks, task]);
     setBoards(
       boards.map((board) => {
         if (board.id === activeBoard.id) {
           return {
             ...board,
-            tasks: [...board.tasks, newTask],
+            tasks: [...board.tasks, task],
           };
         }
         return board;
@@ -335,7 +340,10 @@ const KanabnBoard = ({
 
       return arrayMove(columns, activeColumnIndex, overColumnIndex);
     });
+    
   }
+
+  
 
   function onDragOver(event: DragOverEvent) {
     const { active, over } = event;

@@ -4,8 +4,8 @@ import { BoardType } from "@/types";
 import { useState, useEffect } from "react";
 
 export default function Home() {
+  
   const [boards, setBoards] = useState<BoardType[]>(() => {
-   
     const storedBoards = typeof window !== 'undefined' && localStorage.getItem("boards");
     if (storedBoards) {
       return JSON.parse(storedBoards);
@@ -34,16 +34,15 @@ export default function Home() {
       return initialBoards;
     }
   });
-
   const [activeBoard, setActiveBoard] = useState<BoardType>(boards[0]);
 
   useEffect(() => {
-    // Save data to local storage when the component unmounts
-    return () => {
-      localStorage.setItem("boards", JSON.stringify(boards));
-    };
+    localStorage.setItem("boards", JSON.stringify(boards));
   }, [boards]);
 
+  
+
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between ">
       <div className="flex">
