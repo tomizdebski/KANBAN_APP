@@ -16,4 +16,13 @@ export type Task = {
   id: Id;
   columnId: Id;
   content: string;
+  subtasks: Subtask[];
 };
+
+export type Subtask = {
+  id: Id;
+  taskId: Id;
+  content: string;
+  isCompleted: boolean;
+};
+

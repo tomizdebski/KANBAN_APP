@@ -6,6 +6,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import PlusIcon from "../icons/PlusIcon";
 import TaskCard from "./TaskCard";
+import FormAddTask from "./FormAddTask";
 
 interface Props {
   column: Column;
@@ -119,13 +120,16 @@ const ColumnContainer = (props: Props) => {
           ))}
         </SortableContext>
       </div>
-      <button
+
+      {/* <button
         className="m-4 pl-4 pr-6 py-3 bg-indigo-500 rounded-full shadow justify-center items-center gap-2 flex bg-none"
         onClick={() => createTask(column.id)}
       >
         <PlusIcon />
         Add task
-      </button>
+      </button> */}
+      <FormAddTask />
+
     </div>
   );
 };

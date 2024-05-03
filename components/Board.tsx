@@ -231,6 +231,7 @@ const KanabnBoard = ({
       id: generateId(),
       columnId,
       content: `Task ${tasks.length + 1}`,
+      subtasks: [],
     };
     setTasks([...tasks, newTask]);
     setBoards(
