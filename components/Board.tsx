@@ -226,12 +226,13 @@ const KanabnBoard = ({
     );
   }
 
-  function createTask(columnId: Id) {
+  function createTask(task: Task) {
     const newTask: Task = {
       id: generateId(),
-      columnId,
-      content: `Task ${tasks.length + 1}`,
-      subtasks: [],
+      columnId: task.columnId,
+      title: task.title,
+      content: task.content,
+      subtasks: task.subtasks,
     };
     setTasks([...tasks, newTask]);
     setBoards(

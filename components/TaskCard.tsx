@@ -185,10 +185,10 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       className=" p-2 h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-fiolet cursor-grab justify-between opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out dark:bg-dark_gray bg-white"
       onMouseEnter={() => setMouseIsOver(true)}
       onMouseLeave={() => setMouseIsOver(false)}
-    >
-      <p className="my-auto h-[90%] w-full overflow-y-auto overflow-x-hidden whitespace-pre-wrap ">
-        {task.content}
-      </p>
+    > <div className="">{task.content}</div>
+      <div className="text-semibold my-auto h-[90%] w-full overflow-y-auto overflow-x-hidden whitespace-pre-wrap ">
+        {task.title}
+      </div>
 
       {mouseIsOver && (
         <button className="stroke-white" onClick={() => deleteTask(task.id)}>

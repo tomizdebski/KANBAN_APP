@@ -15,14 +15,9 @@ export type Column = {
 export type Task = {
   id: Id;
   columnId: Id;
+  title: string;
   content: string;
-  subtasks: Subtask[];
+  subtasks: string[];
 };
 
-export type Subtask = {
-  id: Id;
-  taskId: Id;
-  content: string;
-  isCompleted: boolean;
-};
 

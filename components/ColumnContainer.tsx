@@ -12,7 +12,7 @@ interface Props {
   column: Column;
   deleteColumn: (id: Id) => void;
   updateColumn: (id: Id, title: string) => void;
-  createTask: (columnId: Id) => void;
+  createTask: (task : Task) => void;
   deleteTask: (id: Id) => void;
   updateTask: (id: Id, content: string) => void;
   tasks: Task[];
@@ -128,7 +128,7 @@ const ColumnContainer = (props: Props) => {
         <PlusIcon />
         Add task
       </button> */}
-      <FormAddTask />
+      <FormAddTask createTask={createTask} columnId={column.id}/>
 
     </div>
   );
