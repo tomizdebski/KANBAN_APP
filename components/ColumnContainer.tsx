@@ -118,6 +118,8 @@ const ColumnContainer = (props: Props) => {
               updateTask={updateTask}
             />
           ))}
+          <FormAddTask createTask={createTask} columnId={column.id}/>
+
         </SortableContext>
       </div>
 
@@ -128,8 +130,7 @@ const ColumnContainer = (props: Props) => {
         <PlusIcon />
         Add task
       </button> */}
-      <FormAddTask createTask={createTask} columnId={column.id}/>
-
+      
     </div>
   );
 };

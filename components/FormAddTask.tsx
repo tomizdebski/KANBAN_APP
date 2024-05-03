@@ -63,7 +63,7 @@ const FormAddTask = ({createTask, columnId} : Props) => {
     return (
       <button
         onClick={() => setVisibleForm(!visibleForm)}
-        className="ml-2 pl-4 pr-6 py-3 border-indigo-500 border-2 rounded-xl shadow justify-center items-center gap-2 flex hover:opacity-50"
+        className=" pl-4 pr-4 py-4  rounded-xl shadow bg-bg-indigo-50 dark:bg-dark_gray justify-center items-center gap-2 flex hover:opacity-50"
       >
         <Image src={add} width={12} height={12} alt="add" className="" />
         <div className="text-center text-gray dark:text-light_gray text-sm font-bold font-saira leading-none tracking-wide">
@@ -78,7 +78,7 @@ const FormAddTask = ({createTask, columnId} : Props) => {
         onSubmit={handleSubmit}
         className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-80 z-50"
       >
-        <div className="w-[473px]  px-7 py-[26px] bg-indigo-50 dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
+        <div className="w-[473px]  px-7 py-[26px] bg-white dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
           <div className="self-stretch p-2.5 justify-start items-center gap-2.5 inline-flex">
             <div className="justify-start items-center gap-2.5 flex">
               <div className="w-[129px] text-center text-gray  dark:text-light_gray text-base font-semibold font-saira leading-none tracking-wide">
