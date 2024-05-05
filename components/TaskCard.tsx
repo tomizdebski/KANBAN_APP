@@ -88,7 +88,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
             </div>
 
             {task.subtasks.map((el) => (
-              <div className="self-stretch h-10 p-2 bg-white dark:bg-deep_gray   rounded-lg justify-start items-center gap-6 inline-flex">
+              <div key="el" className="self-stretch h-10 p-2 bg-white dark:bg-deep_gray   rounded-lg justify-start items-center gap-6 inline-flex">
                 <input type="checkbox" />
                 <div className="text-gray  dark:text-light_gray text-xs font-normal font-saira leading-none tracking-wide">
                   {el}
