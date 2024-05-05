@@ -85,15 +85,15 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
             <div className="w-[233px] h-[18px] text-gray  dark:text-light_gray text-xs font-bold font-saira leading-none tracking-wide">
               Subtasks({task.subtasks.length})
             </div>
-            
-            
-            {task.subtasks.map(el => <div className="self-stretch h-10 p-2 bg-white dark:bg-deep_gray   rounded-lg justify-start items-center gap-6 inline-flex">
-              <input type="checkbox" />
-              <div className="text-gray  dark:text-light_gray text-xs font-normal font-saira leading-none tracking-wide">
-                {el}
-              </div>
-            </div>)}
 
+            {task.subtasks.map((el) => (
+              <div className="self-stretch h-10 p-2 bg-white dark:bg-deep_gray   rounded-lg justify-start items-center gap-6 inline-flex">
+                <input type="checkbox" />
+                <div className="text-gray  dark:text-light_gray text-xs font-normal font-saira leading-none tracking-wide">
+                  {el}
+                </div>
+              </div>
+            ))}
           </div>
           <div className="self-stretch h-[69px] flex-col justify-start items-start gap-[11px] flex">
             <div className="w-[233px] h-[18px] text-gray  dark:text-light_gray text-xs font-bold font-saira leading-none tracking-wide">
@@ -153,18 +153,36 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       {...attributes}
       {...listeners}
       onClick={toggleEditMode}
-      className=" p-4 h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-fiolet cursor-grab justify-between opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out dark:bg-dark_gray bg-white"
+      className=" 
+      p-4 h-auto 
+      items-center 
+      flex 
+      text-left 
+      rounded-xl 
+      hover:ring-2 
+      hover:ring-inset 
+      hover:ring-fiolet 
+      cursor-grab 
+      justify-between 
+      opacity-60 
+      hover:opacity-100 
+      transition-opacity 
+      duration-300 
+      ease-in-out 
+      dark:bg-dark_gray 
+      bg-white
+      shadow"
       onMouseEnter={() => setMouseIsOver(true)}
       onMouseLeave={() => setMouseIsOver(false)}
     >
       <div className="flex flex-col">
-      <div className="text-fiolet font-saira">{task.title}</div>
-      <div className="font-small my-auto h-[90%] w-full  whitespace-pre-wrap ">
-        {task.content}
-      </div>
-      <div className="font-saira font-small my-auto h-[90%] w-full  whitespace-pre-wrap ">
-        Subtasks ({task.subtasks.length})
-      </div>
+        <div className="text-fiolet font-saira">{task.title}</div>
+        <div className="font-small my-auto h-[90%] w-full  whitespace-pre-wrap ">
+          {task.content}
+        </div>
+        <div className="font-saira font-small my-auto h-[90%] w-full  whitespace-pre-wrap ">
+          Subtasks ({task.subtasks.length})
+        </div>
       </div>
       {mouseIsOver && (
         <button className="stroke-white" onClick={() => deleteTask(task.id)}>

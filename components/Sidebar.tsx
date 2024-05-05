@@ -7,6 +7,7 @@ import add from "../public/icons/add_fiolet.svg";
 import SwitchTheme from "./SwitchTheme";
 import { useTheme } from "next-themes";
 import { BoardType } from "@/types";
+import TrashIcon from "@/icons/TrashIcon";
 
 interface Props {
   boards: BoardType[];
@@ -31,11 +32,15 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
           </div>
 
           {boards.map((el) => (
-            <div 
-            onClick={() => setActiveBoard(el)}
-            key={el.id}
-            className={el.id === activeBoard?.id ?`self-stretch px-6 py-3 bg-indigo-500 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex cursor-pointer` : 
-            `self-stretch px-6 py-3  rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex cursor-pointer`}>
+            <div
+              onClick={() => setActiveBoard(el)}
+              key={el.id}
+              className={
+                el.id === activeBoard?.id
+                  ? `self-stretch px-6 py-3 bg-indigo-500 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex cursor-pointer`
+                  : `self-stretch px-6 py-3  rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex cursor-pointer`
+              }
+            >
               <Image
                 src={kanban_white}
                 width={16}
@@ -43,33 +48,55 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
                 alt="kanban"
                 className=""
               />
+              <div className="flex justify-between gap-4">
               <div className="text-center text-light_gray dark:text-zinc-200text-sm font-semibold font-saira leading-none tracking-wider">
                 {el.title}
+              </div>
+
+              <button
+                className="stroke-gray-500 hover:stroke-white hover:bg-columnBackgroundColor rounded "
+                onClick={() => {
+                  const newBoards = boards.filter(
+                    (board) => board.id !== el.id
+                  );
+                  setBoards(newBoards);
+                }}
+              >
+                <TrashIcon />
+              </button>
               </div>
             </div>
           ))}
 
-          <button 
-          onClick={() => {
-            setEditMode(true);
-            setInputValue("");
-          }}
-          className="self-stretch px-6 py-3 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex cursor-pointer">
+          <button
+            onClick={() => {
+              setEditMode(true);
+              setInputValue("");
+            }}
+            className="self-stretch px-6 py-3 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex cursor-pointer"
+          >
+            {!editMode ? (
+              <div className="justify-center items-center gap-1 flex">
+                <Image
+                  src={theme === "dark" ? kanban_white : kanban_gray}
+                  width={16}
+                  height={16}
+                  alt="kanban"
+                  className=""
+                />
+                <Image
+                  src={add}
+                  width={12}
+                  height={12}
+                  alt="add"
+                  className=""
+                />
 
-            {!editMode ?(<div className="justify-center items-center gap-1 flex">
-              <Image
-                src={theme === "dark" ? kanban_white : kanban_gray}
-                width={16}
-                height={16}
-                alt="kanban"
-                className=""
-              />
-              <Image src={add} width={12} height={12} alt="add" className="" />
-
-              <div className="text-center text-indigo-500 text-sm font-semibold font-saira leading-none tracking-wider">
-                Create New Board
+                <div className="text-center text-indigo-500 text-sm font-semibold font-saira leading-none tracking-wider">
+                  Create New Board
+                </div>
               </div>
-            </div>) : (
+            ) : (
               <input
                 className="bg-black focus:border-fiolet w-[150px] border rounded px-2 outline-none capitalize"
                 value={inputValue}
@@ -83,7 +110,6 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
                 }}
               />
             )}
-
           </button>
         </div>
       </div>

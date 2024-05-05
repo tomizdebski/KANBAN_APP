@@ -19,6 +19,9 @@ import TaskCard from "./TaskCard";
 import Sidebar from "./Sidebar";
 import HideButton from "./HideButton";
 import Navbar from "./Navbar";
+import { generateId } from "../utils/random";
+import Image from "next/image";
+import add from "../public/icons/add_white.svg";
 
 interface Props {
   boards: BoardType[];
@@ -33,7 +36,6 @@ const KanabnBoard = ({
   setBoards,
   setActiveBoard,
 }: Props) => {
-
   const [columns, setColumns] = useState<Column[]>([]);
   const columnsId = useMemo(() => columns?.map((col) => col.id), [columns]);
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -45,19 +47,19 @@ const KanabnBoard = ({
   useEffect(() => {
     setColumns(activeBoard.columns);
     setTasks(activeBoard.tasks);
-    setBoards(boards.map((board) => {
-      if (board.id === activeBoard.id) {
-        return {
-          ...board,
-          columns: activeBoard.columns,
-          tasks: activeBoard.tasks,
-        };
-      }
-      return board;
-    }));
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: activeBoard.columns,
+            tasks: activeBoard.tasks,
+          };
+        }
+        return board;
+      })
+    );
   }, [activeBoard]);
-
-  
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -117,21 +119,26 @@ const KanabnBoard = ({
               onClick={() => createNewColumn()}
               className="
             h-[80%]
-            w-[220px] 
-            min-w-[200px] 
+            min-w-[140px]
+            mt-[60px]
             cursor-pointer 
-            
-            bg-light_blue dark:bg-deep_gray
-            
             p-4 
-            
+            dark:bg-dark_gray bg-white
             hover:text-fiolet
+            rounded-xl
             flex
             gap-2
-            items-center"
+            items-center
+            hover:opacity-50
+            hover:ring-2 hover:ring-inset hover:ring-fiolet
+            shadow
+            
+            "
             >
-              <PlusIcon />
-              Add Column
+              <Image src={add} width={12} height={12} alt="add" className="" />
+              <div className="text-center text-gray dark:text-light_gray text-sm font-bold font-saira leading-none tracking-wide">
+                Add New Task
+              </div>
             </button>
           </div>
 
@@ -184,9 +191,7 @@ const KanabnBoard = ({
         return board;
       })
     );
-
-    
-  };
+  }
 
   function deleteColumn(id: Id) {
     const delColumns = columns.filter((column) => column.id !== id);
@@ -204,7 +209,7 @@ const KanabnBoard = ({
     );
 
     console.log("Column deleted", id);
-  };
+  }
 
   function updateColumn(id: Id, title: string) {
     setColumns((columns) =>
@@ -303,8 +308,6 @@ const KanabnBoard = ({
         return board;
       })
     );
-      
-    
   }
 
   function onDragStart(event: DragStartEvent) {
@@ -341,12 +344,7 @@ const KanabnBoard = ({
 
       return arrayMove(columns, activeColumnIndex, overColumnIndex);
     });
-    
-  
-    
   }
-
-  
 
   function onDragOver(event: DragOverEvent) {
     const { active, over } = event;
@@ -385,10 +383,6 @@ const KanabnBoard = ({
         return arrayMove(tasks, activeIndex, activeIndex);
       });
     }
-  }
-
-  function generateId() {
-    return Math.floor(Math.random() * 10001);
   }
 };
 

@@ -63,7 +63,7 @@ const FormAddTask = ({createTask, columnId} : Props) => {
     return (
       <button
         onClick={() => setVisibleForm(!visibleForm)}
-        className=" pl-4 pr-4 py-4  rounded-xl shadow bg-bg-indigo-50 dark:bg-dark_gray justify-center items-center gap-2 flex hover:opacity-50"
+        className=" pl-4 pr-4 py-4  rounded-xl shadow bg-white dark:bg-dark_gray justify-center items-center gap-2 flex hover:opacity-50 hover:ring-2 hover:ring-inset hover:ring-fiolet"
       >
         <Image src={add} width={12} height={12} alt="add" className="" />
         <div className="text-center text-gray dark:text-light_gray text-sm font-bold font-saira leading-none tracking-wide">

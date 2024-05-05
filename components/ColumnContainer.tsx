@@ -7,6 +7,7 @@ import { useMemo, useState } from "react";
 import PlusIcon from "../icons/PlusIcon";
 import TaskCard from "./TaskCard";
 import FormAddTask from "./FormAddTask";
+import { randomColor } from "@/utils/random";
 
 interface Props {
   column: Column;
