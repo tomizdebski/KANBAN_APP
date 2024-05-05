@@ -24,6 +24,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
   const [editMode, setEditMode] = useState(false);
   const [collapse, setCollapse] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
+  const [editTitle, setEditTitle] = useState(false);
 
   const {
     setNodeRef,
@@ -66,9 +67,9 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-80 z-50">
         <div className="w-[484px]  px-7 py-[26px]   bg-light_blue dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
           <div className="self-stretch justify-between items-center inline-flex">
-            <div className="w-[269px] h-[57px] text-gray  dark:text-light_gray text-base font-semibold font-saira leading-[18px] tracking-wide">
+            {!editTitle && <div className="w-[269px]  text-gray  dark:text-light_gray text-base font-semibold font-saira leading-[18px] tracking-wide">
               {task.title}
-            </div>
+            </div>}
             <Image
               src={theme === "dark" ? close_light : close_dark}
               width={16}
@@ -194,3 +195,4 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
 }
 
 export default TaskCard;
+

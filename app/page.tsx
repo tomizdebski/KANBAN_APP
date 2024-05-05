@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Board from "@/components/Board";
 import { BoardType } from "@/types";
 import { useState, useEffect } from "react";
@@ -40,16 +40,16 @@ export default function Home() {
     localStorage.setItem("boards", JSON.stringify(boards));
   }, [boards]);
 
-  
-
-  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between ">
       <div className="flex">
+
         <div className="flex ">
           <Board boards={boards} setBoards={setBoards} activeBoard={activeBoard} setActiveBoard={setActiveBoard}/>
+
         </div>
       </div>
     </main>
   );
+
 }

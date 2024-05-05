@@ -33,3 +33,4 @@ const Navbar = ({ activeBoard }: Props) => {
 };
 
 export default Navbar;
+
