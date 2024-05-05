@@ -10,11 +10,11 @@ const Hide_button = ({setHideSidebar, hideSidebar} : Props) => {
     
   return (
     <button 
-    onClick={() => setHideSidebar(!hideSidebar)} // Updated the type of 'prev' parameter to 'boolean'
+    onClick={() => setHideSidebar(!hideSidebar)} 
     className="self-stretch py-3 rounded-tr-[20px] rounded-br-[20px] justify-start items-center gap-2 inline-flex absolute bottom-0 cursor-pointer">
       <Image src={visible} width={16} height={16} alt="kanban" className="" />
       <div className="text-center text-[#656567] dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
-        Hide Sidebar
+        {hideSidebar ? "Hide Sidebar" : "Show Sidebar"}
       </div>
     </button>
   );

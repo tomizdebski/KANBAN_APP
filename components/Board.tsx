@@ -16,10 +16,12 @@ import {
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
-
 import Sidebar from "./Sidebar";
 import HideButton from "./HideButton";
 import Navbar from "./Navbar";
+import { generateId } from "../utils/random";
+import Image from "next/image";
+import add from "../public/icons/add_white.svg";
 
 interface Props {
   boards: BoardType[];
@@ -34,8 +36,6 @@ const KanabnBoard = ({
   setBoards,
   setActiveBoard,
 }: Props) => {
-
-
   const [columns, setColumns] = useState<Column[]>([]);
   const columnsId = useMemo(() => columns?.map((col) => col.id), [columns]);
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -47,6 +47,18 @@ const KanabnBoard = ({
   useEffect(() => {
     setColumns(activeBoard.columns);
     setTasks(activeBoard.tasks);
+    setBoards(
+      boards.map((board) => {
+        if (board.id === activeBoard.id) {
+          return {
+            ...board,
+            columns: activeBoard.columns,
+            tasks: activeBoard.tasks,
+          };
+        }
+        return board;
+      })
+    );
   }, [activeBoard]);
 
   const sensors = useSensors(
@@ -57,27 +69,15 @@ const KanabnBoard = ({
     })
   );
 
-  useEffect(() => {
-    setColumns([...board.columns]);
-    setTasks([...board.tasks]);
-    return () => {
-      updateBoards({
-        ...board,
-        columns,
-        tasks,
-      });
-    }
-    
-  }, [board]);
-
   return (
     <div className="flex flex-col">
       <Navbar activeBoard={activeBoard} />
       <div
         className="
         flex
-        min-h-screen
+        min-h-[90%]
         w-full
+        h-[90vh]
         overflow-x-hidden
         overflow-y-hidden
         text-dark_gray dark:text-white
@@ -99,7 +99,7 @@ const KanabnBoard = ({
           onDragOver={onDragOver}
         >
           <div className=" flex gap-4 w-[60vw] overflow-auto">
-            <div className="flex gap-4 ">
+            <div className="flex  ">
               <SortableContext items={columnsId}>
                 {columns.map((column) => (
                   <ColumnContainer
@@ -119,26 +119,30 @@ const KanabnBoard = ({
               onClick={() => createNewColumn()}
               className="
             h-[80%]
-            w-[220px] 
-            min-w-[200px] 
+            min-w-[140px]
+            mt-[60px]
             cursor-pointer 
-            
-            bg-light_blue dark:bg-deep_gray
-            
             p-4 
-            
+            dark:bg-dark_gray bg-white
             hover:text-fiolet
+            rounded-xl
             flex
             gap-2
-            items-center"
-
+            items-center
+            hover:opacity-50
+            hover:ring-2 hover:ring-inset hover:ring-fiolet
+            shadow
+            
+            "
             >
-              <PlusIcon />
-              Add Column
+              <Image src={add} width={12} height={12} alt="add" className="" />
+              <div className="text-center text-gray dark:text-light_gray text-sm font-bold font-saira leading-none tracking-wide">
+                Add New Column
+              </div>
             </button>
           </div>
 
-          {createPortal(
+          {/* {createPortal(
             <DragOverlay>
               {activeColumn && (
                 <ColumnContainer
@@ -162,11 +166,10 @@ const KanabnBoard = ({
               )}
             </DragOverlay>,
             document.body
-          )}
+          )} */}
         </DndContext>
         <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar} />
       </div>
-
     </div>
   );
 
@@ -188,9 +191,7 @@ const KanabnBoard = ({
         return board;
       })
     );
-
-    
-  };
+  }
 
   function deleteColumn(id: Id) {
     const delColumns = columns.filter((column) => column.id !== id);
@@ -208,7 +209,7 @@ const KanabnBoard = ({
     );
 
     console.log("Column deleted", id);
-  };
+  }
 
   function updateColumn(id: Id, title: string) {
     setColumns((columns) =>
@@ -243,22 +244,14 @@ const KanabnBoard = ({
     );
   }
 
-  function createTask(columnId: Id, title: string, content: string, status: "todo" | "doing" | "done", subtasks: Subtask[]) {
-    const newTask: Task = {
-      id: generateId(),
-      columnId,
-      title,
-      content,
-      status,
-      subtasks,
-    };
-    setTasks([...tasks, newTask]);
+  function createTask(task: Task) {
+    setTasks([...tasks, task]);
     setBoards(
       boards.map((board) => {
         if (board.id === activeBoard.id) {
           return {
             ...board,
-            tasks: [...board.tasks, newTask],
+            tasks: [...board.tasks, task],
           };
         }
         return board;
@@ -315,8 +308,6 @@ const KanabnBoard = ({
         return board;
       })
     );
-      
-    
   }
 
   function onDragStart(event: DragStartEvent) {
@@ -393,11 +384,8 @@ const KanabnBoard = ({
       });
     }
   }
-
-  function generateId() {
-    return Math.floor(Math.random() * 10001);
-  }
 };
 
 export default KanabnBoard;
+
 

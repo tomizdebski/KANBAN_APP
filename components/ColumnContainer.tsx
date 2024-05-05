@@ -6,14 +6,14 @@ import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import PlusIcon from "../icons/PlusIcon";
 import TaskCard from "./TaskCard";
-import { Subtask } from "../types";
 import FormAddTask from "./FormAddTask";
+import { randomColor } from "@/utils/random";
 
 interface Props {
   column: Column;
   deleteColumn: (id: Id) => void;
   updateColumn: (id: Id, title: string) => void;
-  createTask: (columnId: Id, title: string, content: string, status: "todo" | "doing" | "done", subtasks: Subtask[]) => void;
+  createTask: (task : Task) => void;
   deleteTask: (id: Id) => void;
   updateTask: (id: Id, content: string) => void;
   tasks: Task[];
@@ -109,7 +109,7 @@ const ColumnContainer = (props: Props) => {
         </button>
       </div>
 
-      <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto">
+      <div className="flex flex-grow flex-col gap-2 pl-2 overflow-x-hidden overflow-y-auto">
         <SortableContext items={tasksIds}>
           {tasks.map((task) => (
             <TaskCard
@@ -119,9 +119,11 @@ const ColumnContainer = (props: Props) => {
               updateTask={updateTask}
             />
           ))}
+          <FormAddTask createTask={createTask} columnId={column.id}/>
+
         </SortableContext>
       </div>
-      <FormAddTask createTask={createTask} columnId={column.id} />
+
       {/* <button
         className="m-4 pl-4 pr-6 py-3 bg-indigo-500 rounded-full shadow justify-center items-center gap-2 flex bg-none"
         onClick={() => createTask(column.id)}
@@ -129,6 +131,7 @@ const ColumnContainer = (props: Props) => {
         <PlusIcon />
         Add task
       </button> */}
+      
     </div>
   );
 };
