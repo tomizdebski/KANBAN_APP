@@ -153,7 +153,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       {...attributes}
       {...listeners}
       onClick={toggleEditMode}
-      className=" p-2 h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-fiolet cursor-grab justify-between opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out dark:bg-dark_gray bg-white"
+      className=" p-4 h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-fiolet cursor-grab justify-between opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out dark:bg-dark_gray bg-white"
       onMouseEnter={() => setMouseIsOver(true)}
       onMouseLeave={() => setMouseIsOver(false)}
     >

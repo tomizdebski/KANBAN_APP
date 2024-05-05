@@ -73,8 +73,9 @@ const KanabnBoard = ({
       <div
         className="
         flex
-        min-h-screen
+        min-h-[90%]
         w-full
+        h-[90vh]
         overflow-x-hidden
         overflow-y-hidden
         text-dark_gray dark:text-white
