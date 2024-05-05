@@ -48,7 +48,7 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
                 alt="kanban"
                 className=""
               />
-              <div className="flex justify-between gap-4">
+              <div className="flex justify-between">
               <div className="text-center text-light_gray dark:text-zinc-200text-sm font-semibold font-saira leading-none tracking-wider">
                 {el.title}
               </div>

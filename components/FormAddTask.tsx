@@ -79,9 +79,9 @@ const FormAddTask = ({createTask, columnId} : Props) => {
         className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-80 z-50"
       >
         <div className="w-[473px]  px-7 py-[26px] bg-white dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
-          <div className="self-stretch p-2.5 justify-start items-center gap-2.5 inline-flex">
+          <div className="self-stretch py-2.5 justify-start items-center gap-2.5 inline-flex">
             <div className="justify-start items-center gap-2.5 flex">
-              <div className="w-[129px] text-center text-gray  dark:text-light_gray text-base font-semibold font-saira leading-none tracking-wide">
+              <div className="text-center text-gray  dark:text-light_gray text-base font-semibold font-saira leading-none tracking-wide">
                 Add New Task
               </div>
             </div>
@@ -97,19 +97,19 @@ const FormAddTask = ({createTask, columnId} : Props) => {
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setTitle(e.target.value)
               }
-              className="self-stretch h-10 py-2.5 bg-white dark:bg-deep_gray rounded-lg border border-zinc-200 justify-center items-center gap-2.5 inline-flex"
+              className="text-center self-stretch h-10 py-2.5 bg-white dark:bg-deep_gray rounded-lg border border-zinc-200 justify-center items-center gap-2.5 inline-flex"
               placeholder="e.g. Take coffee break"
               required
             />
           </div>
           <div className="self-stretch h-[102px] flex-col justify-start items-center gap-[18px] flex">
-            <div className="self-stretch h-[18px] text-gray  dark:text-light_gray text-xs font-bold font-saira leading-none tracking-wide">
+            <div className="text-center self-stretch h-[18px] text-gray  dark:text-light_gray text-xs font-bold font-saira leading-none tracking-wide">
               Dsescription
             </div>
             <textarea
               value={content}
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
-              className="self-stretch px-2.5 py-7 bg-white dark:bg-deep_gray rounded-lg border border-zinc-200 justify-center items-center gap-2.5 inline-flex"
+              className="text-center self-stretch px-2.5 py-7 bg-white dark:bg-deep_gray rounded-lg border border-zinc-200 justify-center items-center gap-2.5 inline-flex"
               placeholder="e.g. Take coffee break"
               required
             />
@@ -125,7 +125,7 @@ const FormAddTask = ({createTask, columnId} : Props) => {
                   type="text"
                   value={subtask}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => handleSubtaskChange(index, e.target.value)}
-                  className="grow shrink basis-0 h-10 py-2.5 bg-white dark:bg-deep_gray rounded-lg border border-zinc-200 justify-center items-center gap-2.5 flex"
+                  className="text-center grow shrink basis-0 h-10 py-2.5 bg-white dark:bg-deep_gray rounded-lg border border-zinc-200 justify-center items-center gap-2.5 flex"
                   placeholder="e.g. Take coffee break"
                   required
                 />

@@ -137,7 +137,7 @@ const KanabnBoard = ({
             >
               <Image src={add} width={12} height={12} alt="add" className="" />
               <div className="text-center text-gray dark:text-light_gray text-sm font-bold font-saira leading-none tracking-wide">
-                Add New Task
+                Add New Column
               </div>
             </button>
           </div>

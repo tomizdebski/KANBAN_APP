@@ -18,7 +18,7 @@ const Navbar = ({ activeBoard }: Props) => {
       <div className="justify-between items-center flex">
         <Logo />
         <div className="text-dark_gray dark:text-light_gray text-2xl font-bold font-saira leading-loose tracking-wider">
-          {activeBoard.title}
+          {activeBoard?.title}
         </div>
         <div className="justify-start items-center gap-[22px] flex">
           <Image
