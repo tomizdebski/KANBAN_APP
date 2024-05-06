@@ -3,13 +3,12 @@ import React, { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
 import Image from "next/image";
 import add from "../public/icons/add_white.svg";
-import close_dark from "../public/icons/close_dark.svg";
-import close_light from "../public/icons/close_light.svg";
+
 import { useTheme } from "next-themes";
 import collapse_dark from "../public/icons/collapse_dark.svg";
 import collapse_light from "../public/icons/collapse_light.svg";
 import { Id, Task } from "@/types";
-import { create } from "domain";
+
 
 interface Props {
   createTask: (task : Task) => void;

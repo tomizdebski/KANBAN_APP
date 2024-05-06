@@ -3,41 +3,53 @@ import Board from "@/components/Board";
 import { BoardType } from "@/types";
 import { useState, useEffect } from "react";
 
+const initialBoards = [{
+  id: "1",
+  title: "My Board",
+  columns: [
+    {
+      id: "1",
+      title: "To Do",
+    },
+    {
+      id: "2",
+      title: "In Progress",
+    },
+    {
+      id: "3",
+      title: "Done",
+    },
+  ],
+  tasks: [],
+}];
+
 export default function Home() {
   
   const [boards, setBoards] = useState<BoardType[]>(() => {
     const storedBoards = typeof window !== 'undefined' && localStorage.getItem("boards");
     if (storedBoards) {
       return JSON.parse(storedBoards);
-    } else {
-      const initialBoards = [{
-        id: "1",
-        title: "My Board",
-        columns: [
-          {
-            id: "1",
-            title: "To Do",
-          },
-          {
-            id: "2",
-            title: "In Progress",
-          },
-          {
-            id: "3",
-            title: "Done",
-          },
-        ],
-        tasks: [],
-      }];
-      
+    } else if (typeof window !== 'undefined'){
       localStorage.setItem("boards", JSON.stringify(initialBoards));
-      return initialBoards;
+       return initialBoards;
     }
   });
-  const [activeBoard, setActiveBoard] = useState<BoardType>(boards[0]);
+ 
+  const [activeBoard, setActiveBoard] = useState<BoardType | null >(null);
 
   useEffect(() => {
-    localStorage.setItem("boards", JSON.stringify(boards));
+    if (boards.length > 0) {
+      setActiveBoard(boards[0]);
+    }
+  }, []);
+
+
+
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("boards", JSON.stringify(boards));
+    }
   }, [boards]);
 
   return (
@@ -45,7 +57,8 @@ export default function Home() {
       <div className="flex">
 
         <div className="flex ">
-          <Board boards={boards} setBoards={setBoards} activeBoard={activeBoard} setActiveBoard={setActiveBoard}/>
+
+          {activeBoard && <Board boards={boards} setBoards={setBoards} activeBoard={activeBoard} setActiveBoard={setActiveBoard}/>}
 
         </div>
       </div>

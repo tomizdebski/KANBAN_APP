@@ -14,7 +14,7 @@ const SwitchTheme = () => {
   return (
     
     <div className="w-[237px] h-12 px-12 py-3 bg-light_blue dark:bg-deep_gray rounded justify-between items-center inline-flex">
-      <Image src={theme === "dark"?light_mode: light_mode_gray} width={24} height={24} alt="light" className="" />
+      <Image src={theme === "dark"?light_mode: light_mode_gray}  alt="light" className="" />
       <div className="w-[48px] h-[24px] bg-fiolet rounded-full flex items-center">
         <div
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -28,7 +28,7 @@ const SwitchTheme = () => {
         />
       </div>
 
-      <Image src={theme === "dark"?dark_mode: dark_mode_gray} width={24} height={24} alt="dark" className="" />
+      <Image src={theme === "dark"?dark_mode: dark_mode_gray}  alt="dark" className="" />
     </div>
   );
 };
