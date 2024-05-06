@@ -194,3 +194,4 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
 }
 
 export default TaskCard;
+

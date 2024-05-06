@@ -1,3 +1,4 @@
+
 export type Id = string | number;
 
 export type BoardType = {
@@ -19,5 +20,4 @@ export type Task = {
   content: string;
   subtasks: string[];
 };
-
 
