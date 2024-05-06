@@ -29,17 +29,27 @@ export default function Home() {
     const storedBoards = typeof window !== 'undefined' && localStorage.getItem("boards");
     if (storedBoards) {
       return JSON.parse(storedBoards);
-    } else {
+    } else if (typeof window !== 'undefined'){
       localStorage.setItem("boards", JSON.stringify(initialBoards));
-      return initialBoards;
+       return initialBoards;
     }
   });
-  const [activeBoard, setActiveBoard] = useState<BoardType>(boards[0]);
+ 
+  const [activeBoard, setActiveBoard] = useState<BoardType | null >(null);
+
+  useEffect(() => {
+    if (boards.length > 0) {
+      setActiveBoard(boards[0]);
+    }
+  }, []);
+
 
 
 
   useEffect(() => {
-    localStorage.setItem("boards", JSON.stringify(boards));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("boards", JSON.stringify(boards));
+    }
   }, [boards]);
 
   
@@ -49,7 +59,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between ">
       <div className="flex">
         <div className="flex ">
-          <Board boards={boards} setBoards={setBoards} activeBoard={activeBoard} setActiveBoard={setActiveBoard}/>
+          {activeBoard && <Board boards={boards} setBoards={setBoards} activeBoard={activeBoard} setActiveBoard={setActiveBoard}/>}
         </div>
       </div>
     </main>

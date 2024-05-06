@@ -6,8 +6,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import checked from "../public/icons/checked.svg";
-import no_checked from "../public/icons/no_checked.svg";
+
 import collapse_dark from "../public/icons/collapse_dark.svg";
 import collapse_light from "../public/icons/collapse_light.svg";
 import close_dark from "../public/icons/close_dark.svg";

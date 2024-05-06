@@ -1,5 +1,5 @@
 "use client";
-import PlusIcon from "../icons/PlusIcon";
+//import PlusIcon from "../icons/PlusIcon";
 import { use, useEffect, useMemo, useState } from "react";
 import { BoardType, Column, Id, Task } from "../types";
 import ColumnContainer from "./ColumnContainer";
@@ -14,8 +14,8 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
-import { createPortal } from "react-dom";
-import TaskCard from "./TaskCard";
+// import { createPortal } from "react-dom";
+// import TaskCard from "./TaskCard";
 import Sidebar from "./Sidebar";
 import HideButton from "./HideButton";
 import Navbar from "./Navbar";
