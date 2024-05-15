@@ -71,7 +71,6 @@ const ColumnContainer = (props: Props) => {
     
     w-[220px] 
     h-[80%]
-    
     flex flex-col
     bg-light_blue dark:bg-deep_gray
     "

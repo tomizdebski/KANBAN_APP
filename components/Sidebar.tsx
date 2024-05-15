@@ -27,7 +27,7 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
       <div className="w-[227px] h-[382px] flex-col justify-center items-center gap-[37px] flex">
         <div className="self-stretch h-[273px] flex-col justify-between items-start flex">
           <div className="self-stretch px-6 justify-between items-start inline-flex">
-            <div className="grow shrink basis-0 text-[#656567] dark:text-zinc-200 text-sm font-semibold font-saira leading-tight tracking-wider">
+            <div className="grow  basis-0 text-[#656567] dark:text-zinc-200 text-sm font-semibold font-saira leading-tight tracking-wider">
               ALL BOARDS ({boards.length})
             </div>
           </div>
@@ -50,7 +50,7 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
                 className=""
               />
               <div className="flex justify-between">
-              <div className="text-center text-light_gray dark:text-zinc-200text-sm font-semibold font-saira leading-none tracking-wider">
+              <div className="text-center text-light_gray dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
                 {el.title}
               </div>
 
