@@ -25,7 +25,7 @@ const Navbar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
       <div className="justify-between items-center flex">
         <Logo />
 
-        <div className="hidden sm:flex text-dark_gray dark:text-light_gray text-2xl font-bold font-saira leading-loose tracking-wider">
+        <div className="hidden sm:flex text-dark_gray dark:text-light_gray text-2xl font-bold font-saira leading-loose tracking-wider p-1">
           {activeBoard?.title}
         </div>
 
@@ -39,10 +39,10 @@ const Navbar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
                     setCollapse(false);
                   }}
                   key={el.id}
-                  className="cursor-pointer hover:opacity-50 hover:ring-2 hover:ring-inset hover:ring-fiolet p-2"
+                  className="cursor-pointer hover:opacity-50 hover:ring-2 hover:ring-inset hover:ring-fiolet p-1"
                 >
                   <div className="flex justify-between gap-4 ">
-                    <div className="text-center text-light_gray dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
+                    <div className="text-center text-gray dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
                       {el.title}
                     </div>
                   </div>

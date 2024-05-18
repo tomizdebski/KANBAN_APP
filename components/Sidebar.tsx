@@ -38,19 +38,19 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
               key={el.id}
               className={
                 el.id === activeBoard?.id
-                  ? `self-stretch px-6 py-3 bg-indigo-500 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-3 inline-flex cursor-pointer hover:stroke-white hover:bg-columnBackgroundColor`
-                  : `self-stretch px-6 py-3  rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-3 inline-flex cursor-pointer hover:stroke-white hover:bg-columnBackgroundColor`
+                  ? `self-stretch px-6 py-3 bg-indigo-500 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-3 inline-flex cursor-pointer hover:stroke-white hover:bg-columnBackgroundColor text-light_gray dark:text-light_gray`
+                  : `self-stretch px-6 py-3  rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-3 inline-flex cursor-pointer hover:stroke-white hover:bg-columnBackgroundColor text-gray`
               }
             >
               <Image
-                src={kanban_white}
+                src={el.id === activeBoard?.id ? kanban_white : kanban_gray}
                 width={16}
                 height={16}
                 alt="kanban"
                 className=""
               />
               <div className="flex justify-between gap-4 ">
-                <div className="text-center text-light_gray dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
+                <div className="text-center  text-sm font-semibold font-saira leading-none tracking-wider">
                   {el.title}
                 </div>
 
