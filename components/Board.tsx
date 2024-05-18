@@ -72,7 +72,12 @@ const KanabnBoard = ({
 
   return (
     <div className="flex flex-col">
-      <Navbar activeBoard={activeBoard} />
+      <Navbar
+        boards={boards}
+        activeBoard={activeBoard}
+        setBoards={setBoards}
+        setActiveBoard={setActiveBoard}
+      />
       <div
         className="
         flex
