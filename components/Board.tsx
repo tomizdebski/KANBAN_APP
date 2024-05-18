@@ -97,7 +97,7 @@ const KanabnBoard = ({
           onDragEnd={onDragEnd}
           onDragOver={onDragOver}
         >
-          <div className=" flex gap-4 w-[80%] overflow-auto">
+          <div className=" flex gap-4 w-[100%] overflow-auto">
             <div className="flex  ">
               <SortableContext items={columnsId}>
                 {columns.map((column) => (

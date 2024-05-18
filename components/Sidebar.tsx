@@ -24,8 +24,8 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
 
   return (
     <div className="w-[285px] h-[90vh] bg-gray-800 flex-col justify-between items-start inline-flex dark:bg-dark_gray bg-white">
-      <div className="w-[227px] h-[382px] flex-col justify-center items-center gap-[37px] flex">
-        <div className="self-stretch h-[273px] flex-col justify-between items-start flex">
+      <div className="w-[227px] h-[382px] flex-col items-center gap-[37px] flex">
+        <div className="self-stretch gap-2 flex-col justify-between items-start flex">
           <div className="self-stretch px-6 justify-between items-start inline-flex">
             <div className="grow  basis-0 text-[#656567] dark:text-zinc-200 text-sm font-semibold font-saira leading-tight tracking-wider">
               ALL BOARDS ({boards.length})
@@ -50,21 +50,21 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
                 className=""
               />
               <div className="flex justify-between">
-              <div className="text-center text-light_gray dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
-                {el.title}
-              </div>
+                <div className="text-center text-light_gray dark:text-zinc-200 text-sm font-semibold font-saira leading-none tracking-wider">
+                  {el.title}
+                </div>
 
-              <button
-                className="stroke-gray-500 hover:stroke-white hover:bg-columnBackgroundColor rounded "
-                onClick={() => {
-                  const newBoards = boards.filter(
-                    (board) => board.id !== el.id
-                  );
-                  setBoards(newBoards);
-                }}
-              >
-                <TrashIcon />
-              </button>
+                <button
+                  className="stroke-gray-500 hover:stroke-white hover:bg-columnBackgroundColor rounded "
+                  onClick={() => {
+                    const newBoards = boards.filter(
+                      (board) => board.id !== el.id
+                    );
+                    setBoards(newBoards);
+                  }}
+                >
+                  <TrashIcon />
+                </button>
               </div>
             </div>
           ))}
@@ -138,4 +138,3 @@ function generateId() {
 }
 
 export default Sidebar;
-
