@@ -14,7 +14,7 @@ interface Props {
 const Navbar = ({ activeBoard }: Props) => {
   const { systemTheme, theme, setTheme } = useTheme();
   return (
-    <div className="w-full h-[84px] py-5 px-5 bg-gray-800 flex-col items-between align-between flex">
+    <div className="w-full h-[84px] py-5  bg-gray-800 flex-col items-between align-between flex">
       <div className="justify-between items-center flex">
         <Logo />
         <div className="text-dark_gray dark:text-light_gray text-2xl font-bold font-saira leading-loose tracking-wider">
@@ -33,4 +33,3 @@ const Navbar = ({ activeBoard }: Props) => {
 };
 
 export default Navbar;
-

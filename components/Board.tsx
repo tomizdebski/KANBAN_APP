@@ -118,7 +118,7 @@ const KanabnBoard = ({
               onClick={() => createNewColumn()}
               className="
             h-[80%]
-            min-w-[140px]
+            min-w-[152px]
             mt-[60px]
             cursor-pointer 
             p-4 
@@ -386,5 +386,3 @@ const KanabnBoard = ({
 };
 
 export default KanabnBoard;
-
-
