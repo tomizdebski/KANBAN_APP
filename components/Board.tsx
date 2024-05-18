@@ -22,6 +22,7 @@ import Navbar from "./Navbar";
 import { generateId } from "../utils/random";
 import Image from "next/image";
 import add from "../public/icons/add_white.svg";
+import SwitchTheme from "./SwitchTheme";
 
 interface Props {
   boards: BoardType[];
@@ -168,6 +169,9 @@ const KanabnBoard = ({
           )} */}
         </DndContext>
         <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar} />
+      </div>
+      <div className=" sm:hidden absolute bottom-10">
+        <SwitchTheme />
       </div>
     </div>
   );

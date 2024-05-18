@@ -23,7 +23,7 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <div className="w-[285px] h-[90vh] bg-gray-800 flex-col justify-between items-start inline-flex dark:bg-dark_gray bg-white">
+    <div className="hidden sm:flex w-[285px] h-[90vh] bg-gray-800 flex-col justify-between items-start inline-flex dark:bg-dark_gray bg-white">
       <div className="w-[227px] h-[382px] flex-col items-center gap-[37px] flex">
         <div className="self-stretch gap-2 flex-col justify-between items-start flex">
           <div className="self-stretch px-6 justify-between items-start inline-flex">
