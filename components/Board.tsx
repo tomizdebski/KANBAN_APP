@@ -81,9 +81,10 @@ const KanabnBoard = ({
       <div
         className="
         flex
-        
         min-h-[90%]
-        w-[90vw]
+        w-[98vw]
+        md:w-[90vw]
+        xl:w-[80vw]
         h-[90vh]
         text-dark_gray dark:text-white
         bg-light_blue dark:bg-deep_gray

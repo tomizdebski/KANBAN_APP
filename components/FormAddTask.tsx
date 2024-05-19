@@ -112,7 +112,7 @@ const FormAddTask = ({ createTask, columnId }: Props) => {
           </div>
           <div className="self-stretch h-[102px] flex-col justify-start items-center gap-[18px] flex">
             <div className="text-center self-stretch h-[18px] text-gray  dark:text-light_gray text-xs font-bold font-saira leading-none tracking-wide">
-              Dsescription
+              Description
             </div>
             <textarea
               value={content}
@@ -144,12 +144,15 @@ const FormAddTask = ({ createTask, columnId }: Props) => {
                   placeholder="e.g. Take coffee break"
                   required
                 />
-                <button
-                  type="button"
+
+                <Image
+                  src={close_light}
+                  width={16}
+                  height={16}
+                  alt="close"
+                  className="cursor-pointer"
                   onClick={() => handleDeleteSubtask(index)}
-                >
-                  X
-                </button>
+                />
               </div>
             ))}
 
