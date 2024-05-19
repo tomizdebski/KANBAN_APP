@@ -1,4 +1,3 @@
-
 export type Id = string | number;
 
 export type BoardType = {
@@ -6,7 +5,7 @@ export type BoardType = {
   title: string;
   columns: Column[];
   tasks: Task[];
-}
+};
 
 export type Column = {
   id: Id;
@@ -19,5 +18,5 @@ export type Task = {
   title: string;
   content: string;
   subtasks: string[];
+  status: "todo" | "doing" | "done";
 };
-

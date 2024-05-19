@@ -66,15 +66,17 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-80 z-50">
         <div className="w-[484px]  px-7 py-[26px]   bg-light_blue dark:bg-dark_gray rounded-lg flex-col justify-start items-start gap-10 inline-flex">
           <div className="self-stretch justify-between items-center inline-flex">
-            {!editTitle && <div className="w-[269px]  text-gray  dark:text-light_gray text-base font-semibold font-saira leading-[18px] tracking-wide">
-              {task.title}
-            </div>}
+            {!editTitle && (
+              <div className="w-[269px]  text-gray  dark:text-light_gray text-base font-semibold font-saira leading-[18px] tracking-wide">
+                {task.title}
+              </div>
+            )}
             <Image
               src={theme === "dark" ? close_light : close_dark}
               width={16}
               height={16}
               alt="close"
-              className="self-start"
+              className="self-start cursor-pointer"
               onClick={() => setEditMode(false)}
             />
           </div>
@@ -87,7 +89,10 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
             </div>
 
             {task.subtasks.map((el) => (
-              <div key={el} className="self-stretch h-10 p-2 bg-white dark:bg-deep_gray   rounded-lg justify-start items-center gap-6 inline-flex">
+              <div
+                key={el}
+                className="self-stretch h-10 p-2 bg-white dark:bg-deep_gray   rounded-lg justify-start items-center gap-6 inline-flex"
+              >
                 <input type="checkbox" />
                 <div className="text-gray  dark:text-light_gray text-xs font-normal font-saira leading-none tracking-wide">
                   {el}
@@ -116,7 +121,11 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
                 width={16}
                 height={16}
                 alt="collapse"
-                className={!collapse ? "self-start" : "rotate-180 self-start"}
+                className={
+                  !collapse
+                    ? "self-start cursor-pointer"
+                    : "rotate-180 self-start cursor-pointer"
+                }
                 onClick={() => setCollapse(!collapse)}
               />
             </div>
@@ -194,4 +203,3 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
 }
 
 export default TaskCard;
-

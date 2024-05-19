@@ -54,6 +54,7 @@ const FormAddTask = ({ createTask, columnId }: Props) => {
       title,
       content,
       subtasks,
+      status: "todo",
     });
     setVisibleForm(!visibleForm);
   };
@@ -162,7 +163,7 @@ const FormAddTask = ({ createTask, columnId }: Props) => {
               </div>
             </button>
           </div>
-          <div className="self-stretch h-[74px] flex-col justify-start items-start gap-4 flex">
+          {/* <div className="self-stretch h-[74px] flex-col justify-start items-start gap-4 flex">
             <div className="w-[233px] h-[18px] text-gray  dark:text-light_gray text-xs font-bold font-saira leading-none tracking-wide">
               Status
               <br />
@@ -188,7 +189,7 @@ const FormAddTask = ({ createTask, columnId }: Props) => {
                 onClick={() => setCollapse(!collapse)}
               />
             </div>
-          </div>
+          </div> */}
           <button
             type="submit"
             className="self-stretch px-6 py-3 bg-indigo-500 rounded-[20px] shadow justify-center items-center gap-2.5 inline-flex hover:opacity-50 hover:ring-2 hover:ring-inset hover:ring-fiolet"
