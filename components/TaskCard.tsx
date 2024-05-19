@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TrashIcon from "../icons/TrashIcon";
 import { Id, Task } from "../types";
 import { useSortable } from "@dnd-kit/sortable";
@@ -15,13 +15,19 @@ import close_light from "../public/icons/close_light.svg";
 interface Props {
   task: Task;
   deleteTask: (id: Id) => void;
-  updateTask: (id: Id, content: string) => void;
+  updateTask: (
+    id: Id,
+    content: string,
+    status: "todo" | "doing" | "done"
+  ) => void;
 }
+
+const status = ["Todo", "Doing", "Done"];
 
 function TaskCard({ task, deleteTask, updateTask }: Props) {
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [collapse, setCollapse] = useState(false);
+  const [statusOpt, setStatusOpt] = useState(task.status);
   const { systemTheme, theme, setTheme } = useTheme();
   const [editTitle, setEditTitle] = useState(false);
 
@@ -77,7 +83,10 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
               height={16}
               alt="close"
               className="self-start cursor-pointer"
-              onClick={() => setEditMode(false)}
+              onClick={() => {
+                setEditMode(false);
+                updateTask(task.id, task.content, statusOpt);
+              }}
             />
           </div>
           <div className="self-stretch text-gray  dark:text-light_gray text-xs font-normal font-saira leading-none tracking-wide">
@@ -105,33 +114,29 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
               Status
               <br />
             </div>
-            <div className="self-stretch h-auto px-2 py-2.5 bg-white dark:bg-deep_gray  rounded-lg border border-light_blue justify-between items-center inline-flex">
-              <div className="text-gray  dark:text-light_gray text-xs font-normal font-saira leading-none tracking-wide">
-                Todo
-                {collapse && (
-                  <div className="text-gray  dark:text-light_gray text-xs font-normal font-saira leading-none tracking-wide">
-                    Doing
-                    <br />
-                    Done
-                  </div>
-                )}
-              </div>
-              <Image
-                src={theme === "dark" ? collapse_light : collapse_dark}
-                width={16}
-                height={16}
-                alt="collapse"
-                className={
-                  !collapse
-                    ? "self-start cursor-pointer"
-                    : "rotate-180 self-start cursor-pointer"
-                }
-                onClick={() => setCollapse(!collapse)}
-              />
-            </div>
+
+            <select
+              className="self-stretch h-auto px-2 py-2.5 bg-white dark:bg-deep_gray  rounded-lg border border-light_blue justify-between items-center inline-flex"
+              name="categoryId"
+              value={statusOpt}
+              onChange={(e) =>
+                setStatusOpt(
+                  e.target.value as React.SetStateAction<
+                    "todo" | "doing" | "done"
+                  >
+                )
+              }
+            >
+              {status.map((option, id) => (
+                <option key={id} value={option} className="form_input">
+                  {option}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
+
       /////////////////////////////inna wersja
       // <div
       //   ref={setNodeRef}

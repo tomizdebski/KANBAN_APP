@@ -23,6 +23,8 @@ import { generateId } from "../utils/random";
 import Image from "next/image";
 import add from "../public/icons/add_white.svg";
 import SwitchTheme from "./SwitchTheme";
+import { createPortal } from "react-dom";
+import TaskCard from "./TaskCard";
 
 interface Props {
   boards: BoardType[];
@@ -150,7 +152,7 @@ const KanabnBoard = ({
             </button>
           </div>
 
-          {/* {createPortal(
+          {createPortal(
             <DragOverlay>
               {activeColumn && (
                 <ColumnContainer
@@ -174,7 +176,7 @@ const KanabnBoard = ({
               )}
             </DragOverlay>,
             document.body
-          )} */}
+          )}
         </DndContext>
         <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar} />
       </div>
@@ -302,13 +304,18 @@ const KanabnBoard = ({
     );
   }
 
-  function updateTask(id: Id, content: string) {
+  function updateTask(
+    id: Id,
+    content: string,
+    status: "todo" | "doing" | "done"
+  ) {
     setTasks((tasks) =>
       tasks.map((task) => {
         if (task.id === id) {
           return {
             ...task,
             content,
+            status,
           };
         }
         return task;

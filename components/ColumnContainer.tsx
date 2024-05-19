@@ -8,14 +8,17 @@ import { useMemo, useState } from "react";
 import TaskCard from "./TaskCard";
 import FormAddTask from "./FormAddTask";
 
-
 interface Props {
   column: Column;
   deleteColumn: (id: Id) => void;
   updateColumn: (id: Id, title: string) => void;
-  createTask: (task : Task) => void;
+  createTask: (task: Task) => void;
   deleteTask: (id: Id) => void;
-  updateTask: (id: Id, content: string) => void;
+  updateTask: (
+    id: Id,
+    content: string,
+    status: "todo" | "doing" | "done"
+  ) => void;
   tasks: Task[];
 }
 
@@ -82,10 +85,13 @@ const ColumnContainer = (props: Props) => {
         className="bg-light_blue dark:bg-deep_gray  h-[60px] text-md  rounded-md rounded-b-none p-3 font-bold  flex items-center justify-between"
       >
         <div className="flex gap-2 items-center">
-        <div className={`w-3.5 h-3.5 bg-fiolet rounded-full`} />
-          
+          <div className={`w-3.5 h-3.5 bg-fiolet rounded-full`} />
 
-          {!editMode && <span className="uppercase">{column.title} {`(${tasks.length})`}</span>}
+          {!editMode && (
+            <span className="uppercase">
+              {column.title} {`(${tasks.length})`}
+            </span>
+          )}
           {editMode && (
             <input
               className="bg-black focus:border-fiolet w-[150px] border rounded px-2 outline-none"
@@ -118,8 +124,7 @@ const ColumnContainer = (props: Props) => {
               updateTask={updateTask}
             />
           ))}
-          <FormAddTask createTask={createTask} columnId={column.id}/>
-
+          <FormAddTask createTask={createTask} columnId={column.id} />
         </SortableContext>
       </div>
 
@@ -130,7 +135,6 @@ const ColumnContainer = (props: Props) => {
         <PlusIcon />
         Add task
       </button> */}
-      
     </div>
   );
 };
