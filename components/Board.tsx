@@ -176,7 +176,7 @@ const KanabnBoard = ({
         </DndContext>
         <HideButton setHideSidebar={setHideSidebar} hideSidebar={hideSidebar} />
       </div>
-      <div className=" sm:hidden absolute bottom-10">
+      <div className=" sm:hidden absolute bottom-10 w-[100vw] flex justify-center items-center ">
         <SwitchTheme />
       </div>
     </div>
