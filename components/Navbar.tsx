@@ -9,15 +9,23 @@ import { BoardType } from "@/types";
 import { useState } from "react";
 import collapse_dark from "../public/icons/collapse_dark.svg";
 import collapse_light from "../public/icons/collapse_light.svg";
+import ButtonAddBoard from "./ButtonAddBoard";
 
 interface Props {
   boards: BoardType[];
   activeBoard: BoardType | null;
   setBoards: (boards: BoardType[]) => void;
   setActiveBoard: (board: BoardType) => void;
+  createNewBoard: (title: string) => void;
 }
 
-const Navbar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
+const Navbar = ({
+  boards,
+  activeBoard,
+  setBoards,
+  setActiveBoard,
+  createNewBoard,
+}: Props) => {
   const { systemTheme, theme, setTheme } = useTheme();
   const [collapse, setCollapse] = useState(false);
   return (
@@ -60,6 +68,9 @@ const Navbar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
             className={!collapse ? "self-center" : "rotate-180 self-center"}
             onClick={() => setCollapse(!collapse)}
           />
+        </div>
+        <div className=" sm:hidden">
+          <ButtonAddBoard createNewBoard={createNewBoard} />
         </div>
 
         <div className="justify-start items-center gap-[22px] flex">

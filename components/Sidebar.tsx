@@ -9,15 +9,23 @@ import SwitchTheme from "./SwitchTheme";
 import { useTheme } from "next-themes";
 import { BoardType } from "@/types";
 import TrashIcon from "@/icons/TrashIcon";
+import ButtonAddBoard from "./ButtonAddBoard";
 
 interface Props {
   boards: BoardType[];
   activeBoard: BoardType | null;
   setBoards: (boards: BoardType[]) => void;
   setActiveBoard: (board: BoardType) => void;
+  createNewBoard: (title: string) => void;
 }
 
-const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
+const Sidebar = ({
+  boards,
+  activeBoard,
+  setBoards,
+  setActiveBoard,
+  createNewBoard,
+}: Props) => {
   const { systemTheme, theme, setTheme } = useTheme();
   const [editMode, setEditMode] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -69,49 +77,7 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
             </div>
           ))}
 
-          <button
-            onClick={() => {
-              setEditMode(true);
-              setInputValue("");
-            }}
-            className="self-stretch px-6 py-3 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-2 inline-flex cursor-pointer"
-          >
-            {!editMode ? (
-              <div className="justify-center items-center gap-1 flex">
-                <Image
-                  src={theme === "dark" ? kanban_white : kanban_gray}
-                  width={16}
-                  height={16}
-                  alt="kanban"
-                  className=""
-                />
-                <Image
-                  src={add}
-                  width={12}
-                  height={12}
-                  alt="add"
-                  className=""
-                />
-
-                <div className="text-center text-indigo-500 text-sm font-semibold font-saira leading-none tracking-wider">
-                  Create New Board
-                </div>
-              </div>
-            ) : (
-              <input
-                className="bg-black focus:border-fiolet w-[150px] border rounded px-2 outline-none capitalize"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                autoFocus
-                onBlur={() => setEditMode(false)}
-                onKeyDown={(e) => {
-                  if (e.key !== "Enter") return;
-                  createNewBoard(inputValue);
-                  setEditMode(false);
-                }}
-              />
-            )}
-          </button>
+          <ButtonAddBoard createNewBoard={createNewBoard} />
         </div>
       </div>
       <div className="self-stretch h-[103px] px-6 flex-col justify-start items-start gap-[13px] flex">
@@ -119,19 +85,6 @@ const Sidebar = ({ boards, activeBoard, setBoards, setActiveBoard }: Props) => {
       </div>
     </div>
   );
-  function createNewBoard(title: string) {
-    if (!title) return;
-    const newBoard: BoardType = {
-      id: generateId(),
-      title,
-      columns: [],
-      tasks: [],
-    };
-
-    const newBoards = [...boards, newBoard];
-    console.log(newBoards);
-    setBoards(newBoards);
-  }
 };
 function generateId() {
   return Math.floor(Math.random() * 10001);

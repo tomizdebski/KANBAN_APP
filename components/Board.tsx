@@ -77,6 +77,7 @@ const KanabnBoard = ({
         activeBoard={activeBoard}
         setBoards={setBoards}
         setActiveBoard={setActiveBoard}
+        createNewBoard={createNewBoard}
       />
       <div
         className="
@@ -96,6 +97,7 @@ const KanabnBoard = ({
             activeBoard={activeBoard}
             setBoards={setBoards}
             setActiveBoard={setActiveBoard}
+            createNewBoard={createNewBoard}
           />
         )}
         <DndContext
@@ -181,6 +183,20 @@ const KanabnBoard = ({
       </div>
     </div>
   );
+
+  function createNewBoard(title: string) {
+    if (!title) return;
+    const newBoard: BoardType = {
+      id: generateId(),
+      title,
+      columns: [],
+      tasks: [],
+    };
+
+    const newBoards = [...boards, newBoard];
+    console.log(newBoards);
+    setBoards(newBoards);
+  }
 
   function createNewColumn() {
     const columnToAdd: Column = {
