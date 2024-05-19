@@ -46,34 +46,36 @@ const Sidebar = ({
               key={el.id}
               className={
                 el.id === activeBoard?.id
-                  ? `self-stretch px-6 py-3 bg-indigo-500 rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-3 inline-flex cursor-pointer hover:stroke-white hover:bg-columnBackgroundColor text-light_gray dark:text-light_gray`
-                  : `self-stretch px-6 py-3  rounded-tr-[20px] rounded-br-[20px]  justify-start items-center gap-3 inline-flex cursor-pointer hover:stroke-white hover:bg-columnBackgroundColor text-gray`
+                  ? `self-stretch px-6 py-3 bg-indigo-500 rounded-tr-[20px] rounded-br-[20px]  justify-between items-center gap-3 inline-flex cursor-pointer hover:stroke-white hover:bg-columnBackgroundColor text-light_gray dark:text-light_gray w-full`
+                  : `self-stretch px-6 py-3  rounded-tr-[20px] rounded-br-[20px]  justify-between items-center gap-3 inline-flex cursor-pointer hover:stroke-white hover:bg-columnBackgroundColor text-gray w-full`
               }
             >
-              <Image
-                src={el.id === activeBoard?.id ? kanban_white : kanban_gray}
-                width={16}
-                height={16}
-                alt="kanban"
-                className=""
-              />
-              <div className="flex justify-between gap-4 ">
-                <div className="text-center  text-sm font-semibold font-saira leading-none tracking-wider">
-                  {el.title}
+              <div className="flex gap-2">
+                <Image
+                  src={el.id === activeBoard?.id ? kanban_white : kanban_gray}
+                  width={16}
+                  height={16}
+                  alt="kanban"
+                  className=""
+                />
+                <div className="flex justify-between gap-4 ">
+                  <div className="text-center  text-sm font-semibold font-saira leading-none tracking-wider">
+                    {el.title}
+                  </div>
                 </div>
-
-                <button
-                  className="stroke-gray-500  rounded "
-                  onClick={() => {
-                    const newBoards = boards.filter(
-                      (board) => board.id !== el.id
-                    );
-                    setBoards(newBoards);
-                  }}
-                >
-                  <TrashIcon />
-                </button>
               </div>
+
+              <button
+                className="stroke-gray-500  rounded "
+                onClick={() => {
+                  const newBoards = boards.filter(
+                    (board) => board.id !== el.id
+                  );
+                  setBoards(newBoards);
+                }}
+              >
+                <TrashIcon />
+              </button>
             </div>
           ))}
 
