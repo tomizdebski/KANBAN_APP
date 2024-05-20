@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Kanban Application
 
-## Getting Started
+Welcome to the Kanban Application! This project is a task management tool designed using modern web technologies such as JavaScript, React, Next.js, react-dnd-kit and Tailwind CSS. The application provides an intuitive interface for organizing tasks using the Kanban methodology.
 
-First, run the development server:
+## Table of Contents
+
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Features
+
+- **User-friendly Interface:** Drag-and-drop functionality to move tasks across different columns.
+- **Responsive Design:** Ensures usability across various devices, including mobile and desktop.
+- **State Management:** Efficient state management with React hooks.
+- **Customization:** Easily customizable using Tailwind CSS classes.
+- **Next.js:** Server-side rendering for optimized performance and SEO.
+
+## Screenshots
+
+![Kanban Board](path_to_screenshot_1.png)
+_Screenshot of the main Kanban board interface._
+
+![Task Details](path_to_screenshot_2.png)
+_Screenshot showing detailed view of a task._
+
+## Installation
+
+To get started with the Kanban Application, follow these steps:
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/tomizdebski/KANBAN_APP.git
+cd KANBAN_APP
+npm install
+
+```
+
+2. **Start the development server:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **Open the application in your browser:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Usage
 
-## Learn More
+Once the application is running, you can start organizing your tasks using the Kanban board. Simply drag and drop tasks between different columns to update their status.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you have any questions or need further assistance, feel free to contact me at [tomizdebski@gmail.com](mailto:tomizdebski@gmail.com.
+
+```
+
+```
