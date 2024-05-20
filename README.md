@@ -22,10 +22,10 @@ Welcome to the Kanban Application! This project is a task management tool design
 
 ## Screenshots
 
-![Kanban Board](path_to_screenshot_1.png)
+![Kanban Board Desktop](/public/desktop_view.png)
 _Screenshot of the main Kanban board interface._
 
-![Task Details](path_to_screenshot_2.png)
+![Task Details](/public/task_detail.png)
 _Screenshot showing detailed view of a task._
 
 ## Installation
