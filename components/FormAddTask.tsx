@@ -2,7 +2,8 @@
 import React, { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
 import Image from "next/image";
-import add from "../public/icons/add_white.svg";
+import add_white from "../public/icons/add_white.svg";
+import add_gray from "../public/icons/add_gray.svg";
 
 import { useTheme } from "next-themes";
 import collapse_dark from "../public/icons/collapse_dark.svg";
@@ -65,7 +66,13 @@ const FormAddTask = ({ createTask, columnId }: Props) => {
         onClick={() => setVisibleForm(!visibleForm)}
         className=" pl-4 pr-4 py-4  rounded-xl shadow bg-white dark:bg-dark_gray justify-center items-center gap-2 flex hover:opacity-50 hover:ring-2 hover:ring-inset hover:ring-fiolet"
       >
-        <Image src={add} width={12} height={12} alt="add" className="" />
+        <Image
+          src={theme === "dark" ? add_white : add_gray}
+          width={12}
+          height={12}
+          alt="add"
+          className=""
+        />
         <div className="text-center text-gray dark:text-light_gray text-sm font-bold font-saira leading-none tracking-wide">
           Add New Task
         </div>

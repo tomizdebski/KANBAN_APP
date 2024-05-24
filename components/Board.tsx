@@ -21,10 +21,12 @@ import HideButton from "./HideButton";
 import Navbar from "./Navbar";
 import { generateId } from "../utils/random";
 import Image from "next/image";
-import add from "../public/icons/add_white.svg";
+import add_white from "../public/icons/add_white.svg";
+import add_gray from "../public/icons/add_gray.svg";
 import SwitchTheme from "./SwitchTheme";
 import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
+import { useTheme } from "next-themes";
 
 interface Props {
   boards: BoardType[];
@@ -42,10 +44,10 @@ const KanabnBoard = ({
   const [columns, setColumns] = useState<Column[]>([]);
   const columnsId = useMemo(() => columns?.map((col) => col.id), [columns]);
   const [tasks, setTasks] = useState<Task[]>([]);
-
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
   const [activeTask, setActiveTask] = useState<Task | null>(null);
   const [hideSidebar, setHideSidebar] = useState(true);
+  const { theme } = useTheme();
 
   useEffect(() => {
     setColumns(activeBoard.columns);
@@ -145,7 +147,13 @@ const KanabnBoard = ({
             
             "
             >
-              <Image src={add} width={12} height={12} alt="add" className="" />
+              <Image
+                src={theme === "dark" ? add_white : add_gray}
+                width={12}
+                height={12}
+                alt="add"
+                className=""
+              />
               <div className="text-center text-gray dark:text-light_gray text-sm font-bold font-saira leading-none tracking-wide">
                 Add New Column
               </div>

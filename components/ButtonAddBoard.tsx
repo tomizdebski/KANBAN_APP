@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import add from "../public/icons/add_white.svg";
+import add_white from "../public/icons/add_white.svg";
+import add_gray from "../public/icons/add_gray.svg";
 import kanban_gray from "../public/icons/kanban_gray.svg";
 import kanban_white from "../public/icons/kanban_white.svg";
 import { useTheme } from "next-themes";
@@ -25,7 +26,13 @@ const ButtonAddBoard = ({ createNewBoard }: Props) => {
     >
       {!editMode ? (
         <div className="justify-center items-center gap-1 flex cursor-pointer hover:opacity-50">
-          <Image src={add} width={12} height={12} alt="add" className="" />
+          <Image
+            src={theme === "dark" ? add_white : add_gray}
+            width={12}
+            height={12}
+            alt="add"
+            className=""
+          />
 
           <div className="text-center  text-sm font-semibold font-saira leading-none tracking-wider">
             New Board
