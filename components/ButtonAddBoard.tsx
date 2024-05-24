@@ -34,7 +34,7 @@ const ButtonAddBoard = ({ createNewBoard }: Props) => {
             className=""
           />
 
-          <div className="text-center  text-sm font-semibold font-saira leading-none tracking-wider">
+          <div className="text-center text-sm font-semibold font-saira leading-none tracking-wider text-gray dark:text-light_gray">
             New Board
           </div>
         </div>
